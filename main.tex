@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
+\spanishplainpercent
 
 % Ecuaciones
 \usepackage{amsmath,amssymb}
@@ -16,6 +17,27 @@
 
 % Enlaces
 \usepackage[hidelinks]{hyperref}
+
+% Muestra la imagen si existe; de lo contrario, reserva un espacio.
+% Uso: \graficozonas{archivo.png}{Leyenda}{etiqueta}
+\newcommand{\graficozonas}[3]{%
+    \begin{figure}[H]
+        \centering
+        \IfFileExists{Imagenes/#1}{%
+            \includegraphics[width=0.95\linewidth]{Imagenes/#1}%
+        }{%
+            \fbox{%
+                \parbox[c][4cm][c]{0.9\linewidth}{%
+                    \centering
+                    Espacio reservado para el gráfico\\[0.4cm]
+                    \texttt{\detokenize{#1}}
+                }%
+            }%
+        }
+        \caption{#2}
+        \label{#3}
+    \end{figure}
+}
 
 % Datos de la entrega
 \title{Entrega 3 Sistemas de Control}
@@ -31,7 +53,850 @@
 \begin{document}
 
 \maketitle
+\clearpage
 
-% A partir de aquí agregaremos los ejercicios.
+\section*{Ejercicio 2}
+Se estudia el lugar de raíces y la estabilidad de los sistemas
+considerando realimentación unitaria negativa. Por lo tanto,
+la ecuación característica de lazo cerrado es:
+\[
+1+G(s)=0.
+\]
+
+Para construir los lugares de raíces se considera $K\geq 0$.
+En el análisis de Routh--Hurwitz también se indica el intervalo
+de estabilidad cuando se permiten valores negativos de $K$.
+
+\subsection*{a) Sistema con un cero adicional}
+
+La transferencia de lazo abierto es:
+\[
+G(s)=\frac{K(s+z)}{z(s+2)(s+10)},
+\qquad z=100 \quad \text{o} \quad z=15.
+\]
+
+Los polos se encuentran en $s=-2$ y $s=-10$, mientras que
+el cero se encuentra en $s=-z$.
+
+\subsubsection*{Ecuación característica y estabilidad}
+
+A partir de la condición $1+G(s)=0$:
+\begin{align*}
+z(s+2)(s+10)+K(s+z)&=0,\\
+z(s^2+12s+20)+Ks+Kz&=0,\\
+zs^2+(12z+K)s+z(20+K)&=0.
+\end{align*}
+
+La tabla de Routh es:
+\[
+\begin{array}{c|cc}
+s^2 & z       & z(20+K)\\
+s^1 & 12z+K   & 0\\
+s^0 & z(20+K) & 0
+\end{array}
+\]
+
+Como $z>0$, para que todos los elementos de la primera
+columna sean positivos debe cumplirse:
+\[
+12z+K>0,
+\qquad
+z(20+K)>0.
+\]
+
+Por lo tanto:
+\[
+K>-12z,
+\qquad K>-20.
+\]
+
+Para $z=100$ y $z=15$, la condición más restrictiva es:
+\[
+\boxed{K>-20.}
+\]
+
+En particular, ambos sistemas son estables para todo $K\geq 0$.
+
+\subsubsection*{Punto de fuga}
+
+Despejando $K$ de la ecuación característica:
+\[
+K(s)=-\frac{z(s+2)(s+10)}{s+z}
+    =-\frac{z(s^2+12s+20)}{s+z}.
+\]
+
+Para encontrar el punto de fuga se plantea:
+\[
+\frac{dK}{ds}=0.
+\]
+
+Derivando:
+\[
+\frac{dK}{ds}
+=
+-z\frac{(2s+12)(s+z)-(s^2+12s+20)}
+{(s+z)^2}.
+\]
+
+Por lo tanto:
+\begin{align*}
+(2s+12)(s+z)-(s^2+12s+20)&=0,\\
+s^2+2zs+12z-20&=0.
+\end{align*}
+
+Se busca la solución ubicada entre los polos $-10$ y $-2$,
+donde las ramas se acercan al aumentar $K$ desde cero.
+En ese intervalo, $K(s)$ es positiva y se anula en ambos
+extremos. El punto de fuga corresponde al máximo de
+$K(s)$ dentro de dicho tramo.
+
+Para los valores de $z$ considerados, esa solución es:
+\[
+\boxed{s_f=-z+\sqrt{z^2-12z+20}.}
+\]
+
+En este punto, los dos polos reales de lazo cerrado
+coinciden y, al seguir aumentando $K$, forman un par
+complejo conjugado.
+
+\subsubsection*{Asíntota y centroide}
+
+El sistema tiene dos polos y un cero, por lo que existe
+una única asíntota:
+\[
+n-m=2-1=1.
+\]
+
+Su ángulo es:
+\[
+\theta_q=\frac{(2q+1)180^\circ}{n-m}.
+\]
+
+Para $q=0$:
+\[
+\boxed{\theta=180^\circ.}
+\]
+
+El centroide resulta:
+\[
+\sigma_a=
+\frac{\sum p_i-\sum z_i}{n-m}
+=
+\frac{-2-10-(-z)}{1},
+\]
+de donde:
+\[
+\boxed{\sigma_a=z-12.}
+\]
+
+El centroide ubica la asíntota; no representa, en general,
+un polo ni un punto de fuga.
+
+\subsubsection*{Caso $z=100$}
+
+La transferencia es:
+\[
+G(s)=\frac{K(s+100)}{100(s+2)(s+10)}.
+\]
+
+Los polos y el cero son:
+\[
+p_1=-2,\qquad p_2=-10,\qquad z_1=-100.
+\]
+
+\paragraph{Zonas del lugar de raíces.}
+
+Un tramo del eje real pertenece al lugar de raíces para
+$K\geq 0$ si tiene una cantidad impar de polos y ceros
+reales a su derecha.
+
+Por lo tanto, los tramos que pertenecen al lugar son:
+\[
+\boxed{(-\infty,-100)\ \cup\ (-10,-2).}
+\]
+
+% Caso z = 100
+\graficozonas
+    {ZonaLR_z100.png}
+    {Zonas del eje real pertenecientes al lugar de raíces
+    para $z=100$.}
+    {fig:zonas-z100}
+
+\paragraph{Punto de fuga.}
+
+La condición $\frac{dK}{ds}=0$ resulta:
+\[
+s^2+200s+1180=0.
+\]
+
+Se toma la solución:
+\[
+\boxed{s_f=-100+\sqrt{8820}\approx-6{,}0851.}
+\]
+
+Nos quedamos con este valor porque se encuentra en
+$(-10,-2)$, entre los dos polos de lazo abierto, y
+corresponde al máximo de $K(s)$ en ese tramo.
+La ganancia asociada es positiva:
+\[
+K_f=
+-\frac{100(s_f+2)(s_f+10)}{s_f+100}
+\approx17{,}0290.
+\]
+
+Así, las ramas que parten de $-2$ y $-10$ se encuentran
+en $s_f\approx-6{,}0851$ y se separan del eje real
+al aumentar $K$ por encima de $K_f$.
+
+\paragraph{Asíntota y estabilidad.}
+
+El centroide y el ángulo de la asíntota son:
+\[
+\boxed{\sigma_a=88,\qquad\theta=180^\circ.}
+\]
+
+Aunque el centroide sea positivo, la asíntota está sobre
+el eje real y se orienta hacia $-\infty$. Esto no implica
+que el lugar de raíces ingrese al semiplano derecho.
+
+El intervalo de estabilidad es:
+\[
+\boxed{K>-20.}
+\]
+
+\subsubsection*{Caso $z=15$}
+
+La transferencia es:
+\[
+G(s)=\frac{K(s+15)}{15(s+2)(s+10)}.
+\]
+
+Los polos y el cero son:
+\[
+p_1=-2,\qquad p_2=-10,\qquad z_1=-15.
+\]
+
+\paragraph{Zonas del lugar de raíces.}
+
+Aplicando la regla de cantidad impar de polos y ceros
+reales a la derecha, los tramos que pertenecen al lugar son:
+\[
+\boxed{(-\infty,-15)\ \cup\ (-10,-2).}
+\]
+
+% Caso z = 15
+\graficozonas
+    {ZonaLR_z15.png}
+    {Zonas del eje real pertenecientes al lugar de raíces
+    para $z=15$.}
+    {fig:zonas-z15}
+
+\paragraph{Punto de fuga.}
+
+La condición $\frac{dK}{ds}=0$ resulta:
+\[
+s^2+30s+160=0.
+\]
+
+Se toma la solución:
+\[
+\boxed{s_f=-15+\sqrt{65}\approx-6{,}9377.}
+\]
+
+Se elige este valor porque pertenece al tramo $(-10,-2)$,
+donde las ramas que parten de los dos polos se acercan
+al aumentar $K$. Además, corresponde al máximo de
+$K(s)$ en ese intervalo y presenta ganancia positiva:
+\[
+K_f=
+-\frac{15(s_f+2)(s_f+10)}{s_f+15}
+\approx28{,}1323.
+\]
+
+En $s_f\approx-6{,}9377$, las ramas se encuentran y,
+para ganancias inmediatamente superiores a $K_f$,
+forman un par complejo conjugado.
+
+\paragraph{Asíntota y estabilidad.}
+
+El centroide y el ángulo de la asíntota son:
+\[
+\boxed{\sigma_a=3,\qquad\theta=180^\circ.}
+\]
+
+El intervalo de estabilidad es:
+\[
+\boxed{K>-20.}
+\]
+
+\subsection*{b) Sistema con un polo adicional}
+
+La transferencia de lazo abierto es:
+\[
+G(s)=\frac{Kp}{(s+2)(s+10)(s+p)},
+\qquad p=100 \quad \text{o} \quad p=15.
+\]
+
+El sistema tiene tres polos, ubicados en $-2$, $-10$
+y $-p$, y no tiene ceros finitos.
+
+\subsubsection*{Ecuación característica y estabilidad}
+
+La ecuación característica es:
+\[
+(s+2)(s+10)(s+p)+Kp=0.
+\]
+
+Desarrollando:
+\begin{align*}
+(s^2+12s+20)(s+p)+Kp&=0,\\
+s^3+(12+p)s^2+(20+12p)s+p(20+K)&=0.
+\end{align*}
+
+La tabla de Routh es:
+\[
+\begin{array}{c|cc}
+s^3 & 1       & 20+12p\\
+s^2 & 12+p    & p(20+K)\\
+s^1 & b_1     & 0\\
+s^0 & p(20+K) & 0
+\end{array}
+\]
+donde:
+\begin{align*}
+b_1
+&=\frac{(12+p)(20+12p)-p(20+K)}{12+p}\\
+&=\frac{12p^2+144p+240-Kp}{12+p}.
+\end{align*}
+
+Como $p>0$, las condiciones de estabilidad son:
+\[
+12p^2+144p+240-Kp>0,
+\qquad
+p(20+K)>0.
+\]
+
+Despejando:
+\[
+K<12p+144+\frac{240}{p},
+\qquad K>-20.
+\]
+
+Por lo tanto:
+\[
+\boxed{-20<K<12p+144+\frac{240}{p}.}
+\]
+
+\subsubsection*{Punto de fuga}
+
+Despejando la ganancia:
+\[
+K(s)=-\frac{(s+2)(s+10)(s+p)}{p}.
+\]
+
+Equivalentemente:
+\[
+K(s)=-\frac{
+s^3+(12+p)s^2+(20+12p)s+20p
+}{p}.
+\]
+
+Derivando:
+\[
+\frac{dK}{ds}
+=
+-\frac{1}{p}
+\left[3s^2+2(12+p)s+(20+12p)\right].
+\]
+
+La condición para determinar el punto de fuga es:
+\[
+\boxed{3s^2+2(12+p)s+(20+12p)=0.}
+\]
+
+Se selecciona la solución ubicada en $(-10,-2)$,
+que corresponde a una ganancia positiva y al máximo
+de $K(s)$ entre los polos de ese tramo.
+Para los valores de $p$ considerados:
+\[
+\boxed{
+s_f=
+\frac{-(12+p)+\sqrt{(12+p)^2-3(20+12p)}}{3}.
+}
+\]
+
+\subsubsection*{Asíntotas y centroide}
+
+Como hay tres polos y ningún cero finito:
+\[
+n-m=3.
+\]
+
+Los ángulos de las asíntotas son:
+\[
+\theta_q=\frac{(2q+1)180^\circ}{3},
+\qquad q=0,1,2.
+\]
+
+Por lo tanto:
+\[
+\boxed{\theta=60^\circ,\ 180^\circ,\ 300^\circ.}
+\]
+
+El ángulo $300^\circ$ también puede expresarse como
+$-60^\circ$.
+
+El centroide es:
+\[
+\boxed{\sigma_a=\frac{-2-10-p}{3}
+=-\frac{12+p}{3}.}
+\]
+
+\subsubsection*{Caso $p=100$}
+
+La transferencia es:
+\[
+G(s)=\frac{100K}{(s+2)(s+10)(s+100)}.
+\]
+
+\paragraph{Zonas del lugar de raíces.}
+
+Los tramos del eje real que tienen una cantidad impar
+de polos a su derecha y, por lo tanto, pertenecen al
+lugar de raíces son:
+\[
+\boxed{(-\infty,-100)\ \cup\ (-10,-2).}
+\]
+
+% Caso p = 100
+\graficozonas
+    {ZonaLR_p100.png}
+    {Zonas del eje real pertenecientes al lugar de raíces
+    para $p=100$.}
+    {fig:zonas-p100}
+
+\paragraph{Estabilidad.}
+
+El intervalo de estabilidad resulta:
+\[
+-20<K<12(100)+144+\frac{240}{100},
+\]
+es decir:
+\[
+\boxed{-20<K<1346{,}4.}
+\]
+
+Para ganancias no negativas:
+\[
+\boxed{0\leq K<1346{,}4.}
+\]
+
+\paragraph{Punto de fuga.}
+
+La condición $\frac{dK}{ds}=0$ resulta:
+\[
+3s^2+224s+1220=0.
+\]
+
+Se toma la solución:
+\[
+\boxed{
+s_f=\frac{-112+\sqrt{8884}}{3}
+\approx-5{,}9150.
+}
+\]
+
+Se elige este valor porque se encuentra entre los polos
+$-10$ y $-2$, dentro de un tramo perteneciente al lugar
+de raíces, y corresponde al máximo de $K(s)$ en ese
+intervalo. Su ganancia es positiva:
+\[
+K_f=
+-\frac{(s_f+2)(s_f+10)(s_f+100)}{100}
+\approx15{,}0468.
+\]
+
+Las ramas que parten de $-2$ y $-10$ se encuentran
+en este punto y forman un par complejo conjugado
+al aumentar $K$ por encima de $K_f$.
+
+\paragraph{Asíntotas.}
+
+El centroide es:
+\[
+\boxed{\sigma_a=-\frac{112}{3}\approx-37{,}3333.}
+\]
+
+Los ángulos de las asíntotas son:
+\[
+\boxed{\theta=60^\circ,\ -60^\circ,\ 180^\circ.}
+\]
+
+Para ganancias grandes, las ramas complejas se aproximan
+a las asíntotas de $\pm60^\circ$. La rama que parte de
+$-100$ avanza sobre el eje real hacia $-\infty$.
+
+\subsubsection*{Caso $p=15$}
+
+La transferencia es:
+\[
+G(s)=\frac{15K}{(s+2)(s+10)(s+15)}.
+\]
+
+\paragraph{Zonas del lugar de raíces.}
+
+Aplicando la regla de cantidad impar de polos a la derecha,
+los tramos del eje real pertenecientes al lugar son:
+\[
+\boxed{(-\infty,-15)\ \cup\ (-10,-2).}
+\]
+
+% Caso p = 15
+\graficozonas
+    {ZonaLR_p15.png}
+    {Zonas del eje real pertenecientes al lugar de raíces
+    para $p=15$.}
+    {fig:zonas-p15}
+
+\paragraph{Estabilidad.}
+
+El intervalo de estabilidad resulta:
+\[
+-20<K<12(15)+144+\frac{240}{15},
+\]
+es decir:
+\[
+\boxed{-20<K<340.}
+\]
+
+Para ganancias no negativas:
+\[
+\boxed{0\leq K<340.}
+\]
+
+\paragraph{Punto de fuga.}
+
+La condición $\frac{dK}{ds}=0$ resulta:
+\[
+3s^2+54s+200=0.
+\]
+
+Se toma la solución:
+\[
+\boxed{
+s_f=\frac{-27+\sqrt{129}}{3}
+\approx-5{,}2141.
+}
+\]
+
+Se elige este valor porque pertenece al tramo $(-10,-2)$,
+donde las ramas que parten de ambos polos se acercan
+al aumentar $K$. Corresponde al máximo de $K(s)$
+en dicho intervalo y presenta ganancia positiva:
+\[
+K_f=
+-\frac{(s_f+2)(s_f+10)(s_f+15)}{15}
+\approx10{,}0353.
+\]
+
+En este punto, las ramas se encuentran y se separan
+del eje real como un par complejo conjugado al
+aumentar $K$ por encima de $K_f$.
+
+\paragraph{Asíntotas.}
+
+El centroide es:
+\[
+\boxed{\sigma_a=-\frac{27}{3}=-9.}
+\]
+
+Los ángulos de las asíntotas son:
+\[
+\boxed{\theta=60^\circ,\ -60^\circ,\ 180^\circ.}
+\]
+
+Para ganancias grandes, las ramas complejas se aproximan
+a las asíntotas de $\pm60^\circ$. La rama que parte
+de $-15$ se dirige hacia $-\infty$.
+
+\subsection*{c) Rangos de estabilidad}
+
+A partir de los análisis de Routh--Hurwitz anteriores,
+se obtienen los siguientes intervalos de estabilidad
+asintótica:
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+Sistema & Rango de $K$ real & Rango para $K\geq 0$\\
+\midrule
+Cero en $-100$ & $K>-20$ & Todo $K\geq 0$\\
+Cero en $-15$  & $K>-20$ & Todo $K\geq 0$\\
+Polo en $-100$ & $-20<K<1346{,}4$ & $0\leq K<1346{,}4$\\
+Polo en $-15$  & $-20<K<340$ & $0\leq K<340$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+En todos los casos, para $K=-20$ aparece un polo en el
+origen, por lo que ese valor no corresponde a estabilidad
+asintótica.
+
+En los sistemas con un polo adicional, la ganancia
+crítica superior es:
+\[
+K_{\mathrm{cr}}=12p+144+\frac{240}{p}.
+\]
+
+En ese límite, la fila $s^1$ de la tabla de Routh se
+anula. El polinomio auxiliar de la fila $s^2$ es:
+\[
+A(s)=(12+p)s^2+p(20+K_{\mathrm{cr}}).
+\]
+
+Como en el límite se cumple:
+\[
+p(20+K_{\mathrm{cr}})=(12+p)(20+12p),
+\]
+los polos sobre el eje imaginario son:
+\[
+s=\pm j\sqrt{20+12p}.
+\]
+
+Por lo tanto:
+\[
+\begin{array}{c|c|c}
+p & K_{\mathrm{cr}} & \text{Polos sobre el eje imaginario}\\
+\hline
+100 & 1346{,}4 & s\approx\pm j\,34{,}9285\\
+15  & 340     & s\approx\pm j\,14{,}1421
+\end{array}
+\]
+
+En estos valores críticos el sistema no es
+asintóticamente estable. Para ganancias superiores,
+dos polos se encuentran en el semiplano derecho
+y el sistema es inestable.
+
+\subsection*{d) Comparación de las respuestas al escalón}
+
+Se comparan las respuestas al escalón unitario de los sistemas
+completos y sus versiones aproximadas, considerando
+realimentación unitaria negativa y condiciones iniciales nulas.
+
+Se utiliza la misma ganancia en todos los casos:
+\[
+\boxed{K=10.}
+\]
+
+Este valor satisface las condiciones de estabilidad obtenidas
+anteriormente: los sistemas con cero adicional son estables
+para todo $K\geq 0$, mientras que los sistemas con polo adicional
+requieren $K<1346{,}4$ para $p=100$ y $K<340$ para $p=15$.
+
+\subsubsection*{Obtención del modelo aproximado}
+
+Para el sistema con cero adicional, la transferencia puede
+escribirse como:
+\[
+G_z(s)
+=
+\frac{K(s+z)}{z(s+2)(s+10)}
+=
+\frac{K}{(s+2)(s+10)}
+\left(1+\frac{s}{z}\right).
+\]
+
+Para frecuencias mucho menores que $z$, se cumple:
+\[
+1+\frac{s}{z}\approx 1.
+\]
+
+Por su parte, la transferencia con polo adicional es:
+\[
+G_p(s)
+=
+\frac{Kp}{(s+2)(s+10)(s+p)}
+=
+\frac{K}{(s+2)(s+10)}
+\frac{1}{1+s/p}.
+\]
+
+Para frecuencias mucho menores que $p$:
+\[
+\frac{1}{1+s/p}\approx 1.
+\]
+
+Por lo tanto, ambos sistemas admiten la misma aproximación
+de lazo abierto:
+\[
+G_{\mathrm{aprox}}(s)
+=
+\frac{K}{(s+2)(s+10)}.
+\]
+
+Los polos originales se encuentran en $-2$ y $-10$.
+El valor $100$ representa una frecuencia característica
+diez veces mayor que $10$, mientras que el valor $15$
+se encuentra mucho más próximo a las frecuencias
+características del sistema original. Se espera, entonces,
+que la aproximación sea más precisa para $z=100$ y $p=100$.
+
+\subsubsection*{Transferencias utilizadas en la simulación}
+
+Con realimentación unitaria negativa, la transferencia
+de lazo cerrado es:
+\[
+T(s)=\frac{G(s)}{1+G(s)}.
+\]
+
+Para el modelo aproximado con $K=10$:
+\[
+\boxed{
+T_{\mathrm{aprox}}(s)
+=
+\frac{10}{s^2+12s+30}.
+}
+\]
+
+Para el sistema con cero adicional:
+\[
+T_z(s)
+=
+\frac{(K/z)s+K}
+{s^2+(12+K/z)s+20+K}.
+\]
+
+Reemplazando la ganancia y los valores de $z$:
+\[
+T_{z=100}(s)
+=
+\frac{0{,}1s+10}{s^2+12{,}1s+30},
+\]
+\[
+T_{z=15}(s)
+=
+\frac{\frac{2}{3}s+10}
+{s^2+\frac{38}{3}s+30}.
+\]
+
+Para el sistema con polo adicional:
+\[
+T_p(s)
+=
+\frac{Kp}
+{s^3+(12+p)s^2+(20+12p)s+p(20+K)}.
+\]
+
+Reemplazando:
+\[
+T_{p=100}(s)
+=
+\frac{1000}{s^3+112s^2+1220s+3000},
+\]
+\[
+T_{p=15}(s)
+=
+\frac{150}{s^3+27s^2+200s+450}.
+\]
+
+Como todos los sistemas son estables, el valor final
+de la respuesta al escalón unitario se obtiene evaluando
+su transferencia de lazo cerrado en $s=0$:
+\[
+\boxed{
+y_\infty=T(0)=\frac{K}{20+K}
+=\frac{10}{30}=\frac{1}{3}.
+}
+\]
+
+Por lo tanto, la comparación permite observar principalmente
+las diferencias en el transitorio, ya que todos los modelos
+conservan el mismo valor final.
+
+Las simulaciones se realizaron en Python. Para visualizar
+el transitorio, se muestra un intervalo que se extiende
+hasta poco después del mayor tiempo de establecimiento,
+utilizando una banda del $\pm2\,\%$ del valor final.
+
+En el panel inferior de cada figura se representa
+la diferencia normalizada:
+\[
+\Delta(t)
+=
+\frac{
+y_{\mathrm{completo}}(t)-y_{\mathrm{aprox}}(t)
+}{y_\infty}
+\,100\,\%.
+\]
+
+Esta magnitud expresa la diferencia entre ambas respuestas
+como porcentaje del valor final común. Un valor negativo
+indica que la respuesta del modelo completo se encuentra
+por debajo de la aproximada en ese instante.
+
+\subsubsection*{Resultados con cero adicional}
+
+La Figura~\ref{fig:escalon-cero-adicional} compara las
+respuestas para $z=100$ y $z=15$ con la del modelo aproximado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/CeroAdicional.png}
+    \caption{Respuesta al escalón unitario en lazo cerrado
+    con cero adicional para $z=100$ y $z=15$, comparada
+    con el modelo aproximado, utilizando $K=10$.
+    El panel inferior muestra la diferencia normalizada
+    por el valor final común.}
+    \label{fig:escalon-cero-adicional}
+\end{figure}
+
+Para $z=100$, la respuesta prácticamente coincide con
+la del modelo aproximado. La máxima diferencia absoluta,
+normalizada por el valor final, es inferior al $2\,\%$
+aproximadamente.
+
+Para $z=15$, la diferencia es más apreciable: la salida
+crece más rápidamente durante la parte inicial del
+transitorio y la máxima diferencia normalizada alcanza
+aproximadamente el $12\,\%$.
+
+En ambos casos, las diferencias tienden a cero a medida
+que las respuestas se aproximan al mismo valor estacionario.
+Así, para la ganancia elegida, el cero ubicado en $-100$
+puede aproximarse con un efecto pequeño sobre la respuesta,
+mientras que el cero ubicado en $-15$ modifica de manera
+más marcada el transitorio.
+
+\subsubsection*{Resultados con polo adicional}
+
+La Figura~\ref{fig:escalon-polo-adicional} muestra la
+comparación para $p=100$ y $p=15$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/PoloAdicional.png}
+    \caption{Respuesta al escalón unitario en lazo cerrado
+    con polo adicional para $p=100$ y $p=15$, comparada
+    con el modelo aproximado, utilizando $K=10$.
+    El panel inferior muestra la diferencia normalizada
+    por el valor final común.}
+    \label{fig:escalon-polo-adicional}
+\end{figure}
+
+Para $p=100$, la respuesta es muy similar a la aproximada,
+con una máxima diferencia absoluta normalizada cercana
+al $2\,\%$.
+
+Para $p=15$, la salida crece más lentamente durante
+la parte inicial del transitorio y permanece inicialmente
+por debajo de la respuesta aproximada. La máxima diferencia
+absoluta normalizada es de aproximadamente el $11\,\%$.
+
+Por lo tanto, el polo ubicado en $-100$ tiene una influencia
+pequeña en la respuesta analizada, mientras que el polo
+ubicado en $-15$ produce una diferencia más importante
+respecto del modelo reducido.
 
 \end{document}
