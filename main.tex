@@ -899,4 +899,660 @@ pequeña en la respuesta analizada, mientras que el polo
 ubicado en $-15$ produce una diferencia más importante
 respecto del modelo reducido.
 
+\clearpage
+\section*{Ejercicio 8}
+
+Se considera el modelo de la incubadora neonatal:
+\[
+G(s)=\frac{0{,}0743}{s^2+0{,}143s+0{,}003},
+\]
+junto con el compensador integral:
+\[
+C(s)=\frac{K}{s}.
+\]
+
+El compensador se coloca en cascada con la planta y
+se considera realimentación unitaria negativa:
+\[
+H(s)=1.
+\]
+
+Por lo tanto, la transferencia de lazo abierto es:
+\[
+\boxed{
+L(s)=C(s)G(s)H(s)
+=\frac{0{,}0743K}
+{s(s^2+0{,}143s+0{,}003)}.
+}
+\]
+
+La transferencia entre la referencia y la salida
+en lazo cerrado resulta:
+\[
+T(s)=\frac{C(s)G(s)}{1+C(s)G(s)H(s)}
+=
+\frac{0{,}0743K}
+{s^3+0{,}143s^2+0{,}003s+0{,}0743K}.
+\]
+
+\subsection*{a) Routh--Hurwitz y lugar de raíces}
+
+\subsubsection*{Ecuación característica}
+
+A partir de la condición $1+L(s)=0$:
+\begin{align*}
+s(s^2+0{,}143s+0{,}003)+0{,}0743K&=0,\\
+s^3+0{,}143s^2+0{,}003s+0{,}0743K&=0.
+\end{align*}
+
+\subsubsection*{Análisis de estabilidad por Routh--Hurwitz}
+
+La tabla de Routh es:
+\[
+\begin{array}{c|cc}
+s^3 & 1 & 0{,}003\\
+s^2 & 0{,}143 & 0{,}0743K\\
+s^1 & b_1 & 0\\
+s^0 & 0{,}0743K & 0
+\end{array}
+\]
+donde:
+\begin{align*}
+b_1
+&=
+\frac{0{,}143\cdot0{,}003-0{,}0743K}
+{0{,}143}\\
+&=
+0{,}003-\frac{0{,}0743}{0{,}143}K\\
+&\approx 0{,}003-0{,}51958042K.
+\end{align*}
+
+Para obtener estabilidad asintótica, todos los elementos
+de la primera columna deben ser positivos:
+\[
+0{,}0743K>0,
+\]
+\[
+0{,}143\cdot0{,}003-0{,}0743K>0.
+\]
+
+Por lo tanto:
+\[
+K>0,
+\qquad
+K<\frac{0{,}143\cdot0{,}003}{0{,}0743}.
+\]
+
+Se define la ganancia crítica:
+\[
+K_{\mathrm{cr}}
+=
+\frac{0{,}143\cdot0{,}003}{0{,}0743}
+\approx 0{,}00577389.
+\]
+
+El intervalo de estabilidad es:
+\[
+\boxed{0<K<K_{\mathrm{cr}}\approx5{,}77389\times10^{-3}.}
+\]
+
+Para $K>K_{\mathrm{cr}}$, la primera columna presenta
+los signos:
+\[
++,\quad+,\quad-,\quad+.
+\]
+
+Los dos cambios de signo indican la existencia de
+dos polos en el semiplano derecho. Por lo tanto,
+el sistema es inestable.
+
+Para $K<0$, la primera columna presenta un cambio
+de signo, por lo que también se obtiene un sistema
+inestable. En $K=0$, el polinomio característico
+tiene una raíz en el origen y no es Hurwitz.
+
+\subsubsection*{Polos y ceros de lazo abierto}
+
+Los polos de $L(s)$ se obtienen de:
+\[
+s(s^2+0{,}143s+0{,}003)=0.
+\]
+
+Uno de ellos se encuentra en:
+\[
+p_1=0.
+\]
+
+Los otros dos son:
+\[
+p_{2,3}
+=
+\frac{-0{,}143
+\pm\sqrt{0{,}143^2-4\cdot0{,}003}}{2}.
+\]
+
+Numéricamente:
+\[
+\boxed{
+p_1=0,\qquad
+p_2\approx-0{,}02554078,\qquad
+p_3\approx-0{,}11745922.
+}
+\]
+
+El sistema no tiene ceros finitos, por lo que
+las tres ramas del lugar de raíces terminan
+en el infinito.
+
+\subsubsection*{Tramos del eje real}
+
+Para $K\geq0$, un punto del eje real pertenece al lugar
+de raíces si tiene una cantidad impar de polos y ceros
+reales a su derecha.
+
+En este caso, los tramos pertenecientes al lugar son:
+\[
+\boxed{
+(-\infty,p_3)\ \cup\ (p_2,0).
+}
+\]
+
+Numéricamente:
+\[
+(-\infty,-0{,}11745922)
+\ \cup\
+(-0{,}02554078,0).
+\]
+
+Los polos constituyen los puntos iniciales de las ramas
+para $K=0$.
+
+\subsubsection*{Punto de fuga}
+
+Despejando la ganancia de la ecuación característica:
+\[
+K(s)
+=
+-\frac{s^3+0{,}143s^2+0{,}003s}{0{,}0743}.
+\]
+
+Se plantea:
+\[
+\frac{dK}{ds}=0.
+\]
+
+Derivando:
+\[
+\frac{dK}{ds}
+=
+-\frac{3s^2+0{,}286s+0{,}003}{0{,}0743}.
+\]
+
+Por lo tanto:
+\[
+3s^2+0{,}286s+0{,}003=0.
+\]
+
+Sus soluciones son:
+\[
+s_1=-0{,}012,
+\qquad
+s_2=-0{,}08333333.
+\]
+
+La solución $s_1=-0{,}012$ pertenece al tramo
+$(p_2,0)$ del lugar de raíces y corresponde
+a una ganancia positiva:
+\[
+K_f
+=
+-\frac{(-0{,}012)^3
++0{,}143(-0{,}012)^2
++0{,}003(-0{,}012)}
+{0{,}0743}.
+\]
+
+Así:
+\[
+\boxed{
+s_f=-0{,}012,
+\qquad
+K_f\approx2{,}30633\times10^{-4}.
+}
+\]
+
+Se elige este valor porque es el máximo de $K(s)$
+en el intervalo entre los polos $p_2$ y $0$.
+Las ramas que parten de estos polos se acercan,
+coinciden en $s_f$ y, para ganancias inmediatamente
+superiores a $K_f$, forman un par complejo conjugado.
+
+La solución $s_2=-0{,}08333333$ se descarta para
+el lugar de raíces con $K\geq0$: se encuentra
+entre $p_3$ y $p_2$, en un tramo que no pertenece
+al lugar, y corresponde a:
+\[
+K(s_2)\approx-2{,}21200\times10^{-3}<0.
+\]
+
+\subsubsection*{Asíntotas y centroide}
+
+El sistema tiene tres polos y ningún cero finito:
+\[
+n-m=3.
+\]
+
+Los ángulos de las asíntotas son:
+\[
+\theta_q
+=
+\frac{(2q+1)180^\circ}{3},
+\qquad q=0,1,2.
+\]
+
+Por lo tanto:
+\[
+\boxed{\theta=60^\circ,\ 180^\circ,\ 300^\circ.}
+\]
+
+El ángulo $300^\circ$ es equivalente a $-60^\circ$.
+
+El centroide se obtiene como:
+\[
+\sigma_a
+=
+\frac{\sum p_i-\sum z_i}{n-m}
+=
+\frac{-0{,}143}{3}.
+\]
+
+Entonces:
+\[
+\boxed{\sigma_a\approx-0{,}04766667.}
+\]
+
+\subsubsection*{Descripción del lugar de raíces}
+
+La rama que parte de $p_3\approx-0{,}11745922$
+se desplaza sobre el eje real hacia $-\infty$.
+
+Las ramas que parten del origen y de
+$p_2\approx-0{,}02554078$ se encuentran en el punto
+de fuga $s_f=-0{,}012$. Luego forman un par complejo
+conjugado, cruzan el eje imaginario cuando
+$K=K_{\mathrm{cr}}$ y se aproximan a las asíntotas
+de $\pm60^\circ$ para ganancias grandes.
+
+Por lo tanto, el lugar de raíces concuerda con
+el intervalo de estabilidad obtenido mediante Routh.
+
+\graficozonas
+    {LR_Ej8.png}
+    {Lugar de raíces del sistema compensado de la incubadora
+    neonatal para $K\geq0$. Se deben indicar los polos
+    iniciales, el punto de fuga, las asíntotas, el centroide
+    y los cruces del eje imaginario.}
+    {fig:lr-ej8}
+
+\subsection*{b) Márgenes de ganancia y fase en Bode}
+
+Los márgenes se calculan a partir de la transferencia
+de lazo abierto $L(s)$, no de la transferencia de
+lazo cerrado $T(s)$. En este análisis se considera $K>0$.
+
+Para escribir la transferencia en forma factorizada,
+se definen:
+\[
+a=0{,}02554078,\qquad b=0{,}11745922,
+\]
+donde los valores mostrados están redondeados y
+los valores exactos satisfacen:
+\[
+a+b=0{,}143,\qquad ab=0{,}003.
+\]
+
+Así:
+\[
+L(s)=\frac{0{,}0743K}{s(s+a)(s+b)}.
+\]
+
+\subsubsection*{Módulo y fase}
+
+Evaluando en $s=j\omega$, con $\omega>0$:
+\[
+L(j\omega)
+=
+\frac{0{,}0743K}
+{j\omega\left[(0{,}003-\omega^2)
++j\,0{,}143\omega\right]}.
+\]
+
+Su módulo es:
+\[
+\boxed{
+|L(j\omega)|
+=
+\frac{0{,}0743K}
+{\omega
+\sqrt{(0{,}003-\omega^2)^2
++(0{,}143\omega)^2}}.
+}
+\]
+
+Equivalentemente:
+\[
+|L(j\omega)|
+=
+\frac{0{,}0743K}
+{\omega\sqrt{\omega^2+a^2}\sqrt{\omega^2+b^2}}.
+\]
+
+En decibeles:
+\begin{align*}
+M(\omega)
+={}&20\log_{10}(0{,}0743K)
+-20\log_{10}(\omega)\\
+&-10\log_{10}\left[
+(0{,}003-\omega^2)^2
++(0{,}143\omega)^2
+\right].
+\end{align*}
+
+La fase continua, expresada en grados, es:
+\[
+\boxed{
+\phi(\omega)
+=
+-90^\circ
+-\arctan\left(\frac{\omega}{a}\right)
+-\arctan\left(\frac{\omega}{b}\right).
+}
+\]
+
+En esta expresión, los resultados de las arcotangentes
+se toman en grados.
+
+La fase comienza en $-90^\circ$ a bajas frecuencias,
+debido al integrador, y tiende a $-270^\circ$
+a altas frecuencias. Para $K>0$, la fase no depende
+de la ganancia.
+
+Las frecuencias de quiebre son:
+\[
+\omega_1=a\approx0{,}02554078\ \mathrm{rad/s},
+\]
+\[
+\omega_2=b\approx0{,}11745922\ \mathrm{rad/s}.
+\]
+
+Las pendientes asintóticas del módulo son:
+\[
+\begin{array}{c|c}
+\text{Intervalo} & \text{Pendiente}\\
+\hline
+\omega<a & -20\ \mathrm{dB/d\acute{e}cada}\\
+a<\omega<b & -40\ \mathrm{dB/d\acute{e}cada}\\
+\omega>b & -60\ \mathrm{dB/d\acute{e}cada}
+\end{array}
+\]
+
+Modificar $K$ desplaza verticalmente el módulo:
+\[
+M_{K_2}(\omega)-M_{K_1}(\omega)
+=
+20\log_{10}\left(\frac{K_2}{K_1}\right),
+\]
+sin alterar las frecuencias de quiebre ni la fase.
+
+\subsubsection*{Frecuencia de cruce de fase}
+
+Se define $\omega_{pc}$ como la frecuencia para la cual:
+\[
+\phi(\omega_{pc})=-180^\circ.
+\]
+
+Por lo tanto:
+\[
+\arctan\left(\frac{\omega_{pc}}{a}\right)
++
+\arctan\left(\frac{\omega_{pc}}{b}\right)
+=90^\circ.
+\]
+
+Como ambos argumentos son positivos, esta condición
+se cumple cuando:
+\[
+\frac{\omega_{pc}}{a}
+\frac{\omega_{pc}}{b}=1.
+\]
+
+Entonces:
+\[
+\omega_{pc}^2=ab=0{,}003,
+\]
+y se obtiene:
+\[
+\boxed{
+\omega_{pc}
+=
+\sqrt{0{,}003}
+\approx0{,}05477226\ \mathrm{rad/s}.
+}
+\]
+
+Esta frecuencia no depende de $K$ y coincide
+con la frecuencia del cruce del eje imaginario
+obtenida mediante Routh.
+
+\subsubsection*{Margen de ganancia}
+
+El margen de ganancia en escala lineal es:
+\[
+MG=\frac{1}{|L(j\omega_{pc})|}.
+\]
+
+Para $\omega_{pc}^2=0{,}003$, el módulo resulta:
+\[
+|L(j\omega_{pc})|
+=
+\frac{0{,}0743K}
+{0{,}143\omega_{pc}^2}
+=
+\frac{0{,}0743K}{0{,}143\cdot0{,}003}.
+\]
+
+Por lo tanto:
+\[
+\boxed{
+MG=\frac{K_{\mathrm{cr}}}{K}.
+}
+\]
+
+En decibeles:
+\[
+\boxed{
+MG_{\mathrm{dB}}
+=
+20\log_{10}\left(\frac{K_{\mathrm{cr}}}{K}\right).
+}
+\]
+
+El margen lineal indica el factor por el cual puede
+multiplicarse la ganancia actual antes de alcanzar
+el límite de estabilidad.
+
+Para este sistema:
+\begin{itemize}
+    \item Si $0<K<K_{\mathrm{cr}}$, entonces
+    $MG>1$ y $MG_{\mathrm{dB}}>0$.
+    \item Si $K=K_{\mathrm{cr}}$, entonces
+    $MG=1$ y $MG_{\mathrm{dB}}=0$.
+    \item Si $K>K_{\mathrm{cr}}$, entonces
+    $MG<1$ y $MG_{\mathrm{dB}}<0$.
+\end{itemize}
+
+\subsubsection*{Frecuencia de cruce de ganancia}
+
+Se define $\omega_{gc}$ como la frecuencia en la que:
+\[
+|L(j\omega_{gc})|=1,
+\]
+es decir, donde el módulo cruza $0\ \mathrm{dB}$.
+
+Utilizando la expresión del módulo:
+\[
+\omega_{gc}^2
+\left[
+(0{,}003-\omega_{gc}^2)^2
++(0{,}143\omega_{gc})^2
+\right]
+=
+(0{,}0743K)^2.
+\]
+
+Definiendo $x=\omega_{gc}^2$:
+\[
+x\left[(0{,}003-x)^2+0{,}143^2x\right]
+=
+(0{,}0743K)^2.
+\]
+
+Desarrollando:
+\[
+\boxed{
+x^3+0{,}014449x^2+9\times10^{-6}x
+-(0{,}0743K)^2=0.
+}
+\]
+
+Se obtiene la raíz positiva de esta ecuación y luego:
+\[
+\boxed{\omega_{gc}=\sqrt{x}.}
+\]
+
+Para cada $K>0$ existe un único cruce de ganancia:
+el módulo disminuye continuamente desde infinito,
+cuando $\omega\to0^+$, hasta cero, cuando
+$\omega\to\infty$.
+
+\subsubsection*{Margen de fase}
+
+El margen de fase se calcula en $\omega_{gc}$:
+\[
+MF=180^\circ+\phi(\omega_{gc}).
+\]
+
+Reemplazando la expresión de fase:
+\[
+\boxed{
+MF
+=
+90^\circ
+-\arctan\left(\frac{\omega_{gc}}{a}\right)
+-\arctan\left(\frac{\omega_{gc}}{b}\right).
+}
+\]
+
+Al aumentar $K$, el módulo se desplaza hacia arriba
+y $\omega_{gc}$ aumenta. Como la fase se hace más
+negativa al aumentar la frecuencia, el margen
+de fase disminuye.
+
+Para este sistema:
+\begin{itemize}
+    \item Si $0<K<K_{\mathrm{cr}}$, entonces
+    $\omega_{gc}<\omega_{pc}$ y $MF>0$.
+    \item Si $K=K_{\mathrm{cr}}$, entonces
+    $\omega_{gc}=\omega_{pc}$ y $MF=0$.
+    \item Si $K>K_{\mathrm{cr}}$, entonces
+    $\omega_{gc}>\omega_{pc}$ y $MF<0$.
+\end{itemize}
+
+\subsubsection*{Valores numéricos para distintas ganancias}
+
+Para ilustrar la influencia de la ganancia, se seleccionan:
+\[
+K_1=0{,}001,\qquad
+K_2=0{,}003,\qquad
+K_3=0{,}010.
+\]
+
+Las dos primeras ganancias corresponden a sistemas
+estables y la tercera a un sistema inestable.
+También se incluye el valor crítico como referencia.
+
+Los márgenes se calcularon utilizando las expresiones
+exactas del módulo y la fase, no las aproximaciones
+asintóticas del diagrama de Bode.
+
+\begin{center}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{cccc}
+\toprule
+$K$
+& $\omega_{gc}\ [\mathrm{rad/s}]$
+& $MG_{\mathrm{dB}}$
+& $MF$\\
+\midrule
+$0{,}001$
+& $0{,}019442$
+& $15{,}23$
+& $43{,}32^\circ$\\
+$0{,}003$
+& $0{,}038795$
+& $5{,}69$
+& $15{,}08^\circ$\\
+$K_{\mathrm{cr}}$
+& $0{,}054772$
+& $0$
+& $0^\circ$\\
+$0{,}010$
+& $0{,}071345$
+& $-4{,}77$
+& $-11{,}58^\circ$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Para $K=0{,}001$, el margen de ganancia lineal es
+aproximadamente $5{,}77$: la ganancia puede multiplicarse
+por ese factor antes de alcanzar el límite de estabilidad.
+
+Para $K=0{,}003$, dicho factor se reduce a aproximadamente
+$1{,}92$, y el margen de fase también es menor.
+Aunque el sistema sigue siendo estable, se encuentra
+más próximo al límite de estabilidad.
+
+Para $K=0{,}010$, ambos márgenes en las escalas indicadas
+son negativos, en concordancia con la inestabilidad
+obtenida mediante Routh--Hurwitz.
+
+\subsubsection*{Diagramas de Bode}
+
+En el gráfico de módulo se representarán las curvas
+correspondientes a las ganancias seleccionadas,
+la línea de $0\ \mathrm{dB}$, las frecuencias de cruce
+de ganancia y la frecuencia de cruce de fase.
+Los márgenes de ganancia se medirán en $\omega_{pc}$.
+
+\graficozonas
+    {BodeModulo_Ej8.png}
+    {Diagrama de Bode de módulo de $L(s)$ para distintas
+    ganancias. Los márgenes de ganancia se determinan
+    en $\omega_{pc}\approx0{,}05477226\ \mathrm{rad/s}$.}
+    {fig:bode-modulo-ej8}
+
+La curva de fase es común a todas las ganancias positivas.
+Sobre ella se señalan las distintas frecuencias
+$\omega_{gc}$ y la separación angular respecto de
+$-180^\circ$, correspondiente al margen de fase.
+
+\graficozonas
+    {BodeFase_Ej8.png}
+    {Diagrama de fase de $L(s)$ y márgenes de fase
+    correspondientes a las ganancias seleccionadas.
+    La fase no depende de $K$ para $K>0$.}
+    {fig:bode-fase-ej8}
+
 \end{document}
