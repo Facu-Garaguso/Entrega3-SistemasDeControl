@@ -918,7 +918,7 @@ G(s) = \frac{K\cdot (s+0.916)(1-15s)}{(s+1,27)(s+2,69)(s+28,35)}
 
 Primero, se desarrolla la ecuación característica, llegando a:
 \[
-s^3 + s^2 \cdot (32,31-15K) + s\cdot (115,6823-12,75K) + (96,85 + 0,915K) = 0
+s^3 + s^2 \cdot (32,31-15K) + s\cdot (115,6823-12,74K) + (96,85 + 0,916K) = 0
 \]
 
 Con ella, mediante el método de Routh-Hurwitz se llega a la siguiente tabla:
@@ -926,11 +926,11 @@ Con ella, mediante el método de Routh-Hurwitz se llega a la siguiente tabla:
 \[
 \renewcommand{\arraystretch}{1.8}
 \begin{array}{c|cc}
-s^3 & 1 & 115,6823 - 12,75K \\
-s^2 & 32,31 - 15K & 96,85 + 0,915K \\
+s^3 & 1 & 115,6823 - 12,74K \\
+s^2 & 32,31 - 15K & 96,85 + 0,916K \\
 \hline
-s^1 & \frac{191,25(K - 9,15636)(K - 2,079)}{32,31 - 15K} & 0 \\
-s^0 & 96,85 + 0,915K & 0 \\
+s^1 & \frac{191,1(K - 9,159)(K - 2,08)}{32,31 - 15K} & 0 \\
+s^0 & 96,85 + 0,916K & 0 \\
 \end{array}
 \]
 
@@ -945,37 +945,43 @@ En la fila de $s^2$, la condición es:
 En la fila de $s^1$, la condición resulta:
 
 \[
-\frac{191,25(K-9,15636)(K-2,079)}{32,31-15K} > 0
+\frac{191,1(K-9,159)(K-2,08)}{32,31-15K} > 0
 \]
 
 Debido a que el denominador es mayor a cero por la condición de la fila anterior, se termina llegando a dos condiciones con el numerador:
 
 \[
-\boxed{K < 2,079 \lor K > 9,1536}
+\boxed{K < 2,08 \lor K > 9,159}
 \]
 
 Por último, en la fila de $s^0$, se llega a:
 
 \[
-96,85+0,915K > 0 \Rightarrow \boxed{K>-105,85}
+96,85+0,916K > 0 \Rightarrow \boxed{K>-105,73}
 \]
 
 La intersección entre los intervalos obtenidos devuelve la condición:
 
 \[
-\boxed{0 < K < 2,079}
+\boxed{0 \leq K < 2,08}
 \]
 
-Para la estabilidad del sistema.
+para la estabilidad del sistema en el caso real, y
+
+\[
+\boxed{-105,73 < K < 2,08}
+\]
+
+usando únicamente los resultados del método de Routh-Hurwitz.
 
 \subsubsection*{Lugar de Raíces}
 
-Luego, para analizar el gráfico de Lugar de Raíces, se comienza marcando polos y ceros y uniendo mediante segmentos cuando corresponda (cantidad par de polos y ceros a la derecha del polo o cero analizado, pues el signo negativo del retardo invierte las condiciones).
+Luego, para analizar el gráfico de Lugar de Raíces, se comienza marcando polos y ceros y uniendo mediante segmentos cuando corresponda (cantidad par de polos y ceros a la derecha del polo o cero analizado, pues el signo negativo del retardo que hace que el coeficiente principal sea -15K invierte las condiciones).
 Los segmentos quedan comprendidos de la siguiente manera:\\
 \begin{flushleft}
-Segmento 1: entre los polos $-2,69$ ($p_1$) y $-28,35$ ($p_2$) \\
-Segmento 2: entre el polo $-1,27$ ($p_0$) y el cero $-0,916$ ($z_0$) \\
-Segmento 3: desde el cero aportado por el retardo $0,067$ ($z_1$) hasta $+\infty$
+Segmento 1: entre los polos $-2,69$ ($p_2$) y $-28,35$ ($p_3$) \\
+Segmento 2: entre el polo $-1,27$ ($p_1$) y el cero $-0,916$ ($z_1$) \\
+Segmento 3: desde el cero aportado por el retardo $0,067$ ($z_2$) hasta $+\infty$
 \end{flushleft}
 
 \begin{figure}[H]
@@ -996,13 +1002,13 @@ Debido a que la asíntota es una y su ángulo respecto al eje es de $0^\circ$, n
 Luego, se obtiene K en función de S para derivar la función y hallar puntos de fuga o ingreso:
 
 \[
-K = \frac{s^3+32,31s^2+115,6823s+96,85}{15s^2+12,75s-0,915}
+K = \frac{s^3+32,31s^2+115,6823s+96,85}{15s^2+12,74s-0,916}
 \]
 
 Derivando:
 
 \[
-\frac{d K}{d s} = \frac{15s^4 + 25,5s^3 -1326,028s^2 - 2964,6273s - 1340,6875}{(15s^2+12,75s-0,915)^2} = 0
+\frac{d K}{d s} = \frac{15s^4 + 25,48s^3 -1326,35s^2 - 2964,69s - 1339,84}{(15s^2+12,74s-0,916)^2} = 0
 \]
 
 Del polinomio se obtienen las soluciones:
@@ -1013,15 +1019,32 @@ Del polinomio se obtienen las soluciones:
 \boxed{s_4 \approx -0,63} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta}
 \end{align*}
 
+\paragraph{Ganancias en los puntos de ruptura e ingreso.}
+Evaluando $K(s)$ en las raíces de $\frac{dK}{ds}=0$ que pertenecen al lugar:
+\[
+K_{r} = K(-9{,}13) = \frac{s^3+32{,}31s^2+115{,}6823s+96{,}85}{15s^2+12{,}74s-0{,}916}\Bigg|_{s=-9{,}13} \approx 0{,}859,
+\]
+\[
+K_{i} = K(9{,}663) \approx 3{,}371.
+\]
+Ambas ganancias son positivas, por lo que las dos raíces son v\'alidas para $K\geq 0$.
+
+En el punto $s_1\approx-9{,}13$, ubicado entre $p_2$ y $p_3$, $K(s)$ vale cero en los polos y alcanza un m\'aximo relativo. Por lo tanto, las ramas que parten de $-2{,}69$ y $-28{,}35$ se encuentran all\'i en $K_r\approx 0{,}859$ y, para $K>K_r$, se separan del eje real como un par complejo conjugado.
+
+En el punto $s_2\approx 9{,}663$, dentro del tramo $(0{,}067;+\infty)$, $K(s)$ tiende a infinito en el cero del semiplano derecho y en $s\to+\infty$, por lo que alcanza un m\'inimo relativo. Las ramas complejas vuelven al eje real en $K_i\approx 3{,}371$, y para $K>K_i$ una se dirige hacia el cero $z_2$ y la otra hacia $+\infty$.
+
+Como $K_r < K_{cr}\approx 2{,}08 < K_i$, el cruce del eje imaginario ocurre mientras las ramas se encuentran en forma de par complejo, lo que es coherente con el intervalo de estabilidad obtenido por Routh--Hurwitz.
+
+\paragraph{Cruce por el eje imaginario.}
 Contando con un punto de ruptura y un punto de ingreso, se procede a estudiar el cruce por el eje imaginario de los arcos formados por el punto de fuga. 
-Se utiliza la tabla de Routh-Hurwitz. Ya que la fila de $s^1$ es la que da el intervalo de ganancias con condición estable, se obtiene dicho cruce reemplazando el límite $K=2,079$ en la fila anterior ($s^2$) igualada a cero:
+Para esto, se utiliza la tabla de Routh-Hurwitz. Ya que la fila de $s^1$ es la que da el intervalo de ganancias con condición estable, se obtiene dicho cruce reemplazando el límite $K=2,08$ en la fila anterior ($s^2$) igualada a cero:
 
 \[
-s^2\cdot (32,31 - 15 \cdot 2,079) + (96,85 + 0,916 \cdot 2,079) = 0 \Rightarrow \boxed{ s = \pm j9,37 }
+s^2\cdot (32,31 - 15 \cdot 2,08) + (96,85 + 0,916 \cdot 2,08) = 0 \Rightarrow \boxed{ s = \pm j9,43 }
 \]
 
 Finalmente, se puede graficar el lugar de raíces con los segmentos especificados.
-Cuenta con dos curvas naciendo en $s=-9,13$ ($p_2$ origina un segmento que se desplaza hacia la derecha y $p_1$ origina un segmento que se desplaza hacia la izquierda, cruzándose en el punto de fuga donde se origina el "despegue"), y luego se reúnen en el punto de ingreso $s=9,663$ (donde uno de los segmentos va hacia $z_1$ y el otro hacia $+\infty$).
+Cuenta con dos curvas naciendo en $p_3$ y $p_2$ que van en direcciones opuestas para colisionar y despegar en $s\approx-9,13$, que atraviesan el eje imaginario en $j\pm9,43$ y luego se reúnen en el punto de ingreso $s=9,663$ (donde uno de los segmentos va hacia $z_2$ y el otro hacia $+\infty$).
 
 \begin{figure}[H]
     \centering
@@ -1048,10 +1071,10 @@ La tabla de Routh-Hurwitz resultante es:
 \renewcommand{\arraystretch}{1.8}
 \begin{array}{c|cc}
 s^3 & 1 & 115,68 + K \\
-s^2 & 32,31 & 96,85 + 0,915K \\
+s^2 & 32,31 & 96,85 + 0,916K \\
 \hline
 s^1 & \frac{3640,845 + 31,394K}{32,31} & 0 \\
-s^0 & 96,85 + 0,915K & 0 \\
+s^0 & 96,85 + 0,916K & 0 \\
 \end{array}
 \]
 
@@ -1067,23 +1090,31 @@ En la tercer fila, hay que analizar la desigualdad para llegar a la condición p
 
 Finalmente, en la cuarta fila ocurre algo similar:
 \[
-96,85+0,915K > 0 \Rightarrow \boxed{K>-105,85}
+96,85+0,916K > 0 \Rightarrow \boxed{K>-105,73}
 \]
 
 
 Por ende, la condición de K para que el sistema sin retardo sea estable es:
 
 \[
-\boxed{0<K}
+\boxed{0\leq K}
 \]
+
+en el caso real, y
+
+\[
+\boxed{-105,73 < K}
+\]
+
+utilizando los resultados del método de Routh-Hurwitz.
 
 \subsubsection*{Lugar de Raíces}
 
 En este caso, la función presenta tres polos y un cero. Debido a la ausencia del retardo (que invertía las condiciones en el caso anterior), ahora los segmentos se dibujan cuando hay una cantidad impar de polos y ceros a la derecha del polo o cero analizado.
 Los intervalos resultantes son:\\
 \begin{flushleft}
-Segmento 1: entre los polos $-2,69$ ($p_1$) y $-28,35$ ($p_2$) \\
-Segmento 2: entre el polo $-1,27$ ($p_0$) y el cero $-0,916$ ($z_0$)
+Segmento 1: entre los polos $-2,69$ ($p_2$) y $-28,35$ ($p_3$) \\
+Segmento 2: entre el polo $-1,27$ ($p_1$) y el cero $-0,916$ ($z_1$)
 \end{flushleft}
 
 \begin{figure}[H]
@@ -1114,18 +1145,25 @@ Por ende, se concluye que la función cuenta con dos asíntotas que hacen que la
 Luego, obteniendo K en función de S y luego derivando se pueden hallar las ubicaciones específicas del punto de fuga entre ambos polos.
 
 \[
-\frac{d K}{d s} = \frac{-2s^3-35,055s^2-59,1273s-9}{(s+0,915)^2} = 0
+\frac{dK}{ds}=\frac{-2s^3-35{,}058s^2-59{,}19s-9{,}115}{(s+0{,}916)^2}=0
 \]
 
 Del polinomio se obtienen las soluciones:
 \begin{align*}
 \boxed{s_1 \approx -15,65} &\Rightarrow \text{está dentro del primer segmento, entre dos polos,}\\ &\quad \text{representa el punto de ruptura} \\
 \boxed{s_2 \approx -0,17} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta} \\
-\boxed{s_3 \approx -1,6} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta} \\
+\boxed{s_3 \approx -1,7} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta} \\
 \end{align*}
 
+\paragraph{Ganancia en el punto de ruptura.}
+Evaluando en $s_1\approx-15{,}65$:
+\[
+K_{r} = K(-15{,}65) = -\frac{s^3+32{,}31s^2+115{,}6823s+96{,}85}{s+0{,}916}\Bigg|_{s=-15{,}65}\approx 160{,}6 .
+\]
+Es positiva y corresponde al m\'aximo de $K(s)$ entre $p_2$ y $p_3$. Para $K>K_r$ las ramas se separan del eje real y siguen las as\'intotas verticales en $\sigma_a\approx-15{,}697$, sin cruzar nunca al semiplano derecho.
+
 Habiendo obtenido la ubicación exacta del punto de fuga, se puede realizar el gráfico de Lugar de Raíces.
-Este cuenta con dos segmentos (entre $p_1$ y $p_2$ y entre $p_0$ y $z_0$). 
+Este cuenta con dos segmentos (entre $p_2$ y $p_3$ y entre $p_1$ y $z_1$). 
 En el segmento entre los dos polos, una línea nace de cada uno en dirección al punto de ruptura, causando que en este cruce una ascienda (ángulo de $90^\circ$) y otra descienda (ángulo de $270^\circ$).
 
 \begin{figure}[H]
@@ -1137,8 +1175,8 @@ En el segmento entre los dos polos, una línea nace de cada uno en dirección al
 
 \subsection*{Comparación}
 
-La mayor conclusión que se puede extraer en ambos casos se relaciona con las cotas de las ganancias. En el caso con retardo, la ganancia queda acotada entre $0$ y $2,079$. En cambio, sin el retardo, el sistema es estable con cualquier ganancia positiva.
-Es decir, el retardo introduce limitaciones sobre el sistema debido a la presencia de un cero adicional en el semiplano derecho, "arrastrando" el lugar de raíces hacia la inestabilidad.
+La mayor conclusión que se puede extraer en ambos casos se relaciona con las cotas de las ganancias. En el caso con retardo, la ganancia queda acotada entre $0$ y $2,08$. En cambio, sin el retardo, el sistema es estable con cualquier ganancia positiva.
+Es decir, el retardo introduce limitaciones sobre el sistema debido a la presencia de un cero adicional en el semiplano derecho, arrastrando el lugar de raíces hacia la inestabilidad.
 
 En la aplicación real, se puede analizar que la estabilidad incondicional es un caso ideal en donde la estabilidad teórica es independiente de la ganancia que se le aplique al sistema. En cambio, que haya una limitación en la ganancia puede ser un modelo más fiel a la realidad, y esta limitación surge por el límite físico impuesto por los tiempos muertos.
 

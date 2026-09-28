@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1790562659.48664 "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" "main.pdf" "main" 1790562661.88977 0
+["pdflatex"] 1790609292.77474 "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" "main.pdf" "main" 1790609295.00205 0
   "Imagenes/BodeFase_Ej8.png" 1790544881 93730 a6b5413f8a691a9389a9316543e42e7e ""
   "Imagenes/BodeModulo_Ej8.png" 1790544881 125130 dbad45a6498fc1a13b855e6e4abf073a ""
   "Imagenes/CeroAdicional.png" 1790544881 82358 44d2b6ee199e4aa64e30988ed00109c5 ""
@@ -58,7 +58,6 @@
   "c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb" 1788895911 140176 d0f50dba675c56d445f84a32c1f93a79 ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb" 1788895911 135942 aecb5af344df420d6ec421db27dedf62 ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb" 1788895911 139826 3796482349bae544f13f54da58f9706d ""
-  "c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb" 1788895911 164227 41439fae96b3b30186924e9dd2fcff30 ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb" 1788895911 145929 5c9aebea9ba6e33fc93158c04a3bdcd8 ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb" 1788895911 136101 b18d10b3436f8cb0cd04046deb340fe7 ""
   "c:/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb" 1788895911 131078 3adc08bf3d7686c3b3220602214807d7 ""
@@ -122,10 +121,10 @@
   "c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1788902891 5655996 795b756740562267ad2ae16e70168a76 ""
   "c:/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1788902988 3658215 40d107640da31ad15f5dd6216f7d90b2 ""
   "c:/texlive/2026/texmf.cnf" 1788902848 713 e69b156964470283e0530f5060668171 ""
-  "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" 1790562658 43689 41a90085510f729ab2fdfc268a8ae285 ""
-  "main.aux" 1790562661 6873 433166812d9d51b369482576a8bfc644 "pdflatex"
-  "main.out" 1790562660 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1790562658 43689 41a90085510f729ab2fdfc268a8ae285 ""
+  "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" 1790609291 45648 2fd2d37d2aeb5ae3aedd8c6147360ae2 ""
+  "main.aux" 1790609294 7239 bf22d4c476fbc399d254925b37717660 "pdflatex"
+  "main.out" 1790609293 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1790609291 45648 2fd2d37d2aeb5ae3aedd8c6147360ae2 ""
   (generated)
   "main.aux"
   "main.log"
