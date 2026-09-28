@@ -899,6 +899,250 @@ pequeña en la respuesta analizada, mientras que el polo
 ubicado en $-15$ produce una diferencia más importante
 respecto del modelo reducido.
 
+\section*{Ejercicio 4}
+
+Se estudia el comportamiento dinámico y la estabilidad del sistema considerando un esquema de control con realimentación unitaria negativa ($H(s) = 1$). Por lo tanto, la ecuación característica a lazo cerrado que rige el sistema está dada por:
+\[ 1 + G(s) = 0 \]
+
+Para la construcción de los lugares de raíces se asumen ganancias $K \ge 0$. A su vez, se aplica el criterio de Routh-Hurwitz para determinar analíticamente el intervalo de valores de $K$ que garantizan la estabilidad asintótica. 
+
+El análisis se divide en dos partes: primero se evalúa el modelo del sistema que incorpora una aproximación de Padé para modelar el retardo temporal, y posteriormente se evalúa el modelo ideal sin retardo para comparar las limitaciones de ganancia que este introduce.
+
+\subsection*{Sistema con retardo}
+
+\[
+G(s) = \frac{K\cdot (s+0.916)(1-15s)}{(s+1,27)(s+2,69)(s+28,35)}
+\]
+
+\subsubsection*{Método de Routh-Hurwitz}
+
+Primero, se desarrolla la ecuación característica, llegando a:
+\[
+s^3 + s^2 \cdot (32,31-15K) + s\cdot (115,6823-12,75K) + (96,85 + 0,915K) = 0
+\]
+
+Con ella, mediante el método de Routh-Hurwitz se llega a la siguiente tabla:
+
+\[
+\renewcommand{\arraystretch}{1.8}
+\begin{array}{c|cc}
+s^3 & 1 & 115,6823 - 12,75K \\
+s^2 & 32,31 - 15K & 96,85 + 0,915K \\
+\hline
+s^1 & \frac{191,25(K - 9,15636)(K - 2,079)}{32,31 - 15K} & 0 \\
+s^0 & 96,85 + 0,915K & 0 \\
+\end{array}
+\]
+
+Debido a que el valor de la primera columna es 1 (mayor a cero), la condición de estabilidad es que toda la columna sea mayor a cero. 
+
+En la fila de $s^2$, la condición es:
+
+\[
+32,31 - 15 K > 0 \Rightarrow \boxed{K < 2,154}
+\]
+
+En la fila de $s^1$, la condición resulta:
+
+\[
+\frac{191,25(K-9,15636)(K-2,079)}{32,31-15K} > 0
+\]
+
+Debido a que el denominador es mayor a cero por la condición de la fila anterior, se termina llegando a dos condiciones con el numerador:
+
+\[
+\boxed{K < 2,079 \lor K > 9,1536}
+\]
+
+Por último, en la fila de $s^0$, se llega a:
+
+\[
+96,85+0,915K > 0 \Rightarrow \boxed{K>-105,85}
+\]
+
+La intersección entre los intervalos obtenidos devuelve la condición:
+
+\[
+\boxed{0 < K < 2,079}
+\]
+
+Para la estabilidad del sistema.
+
+\subsubsection*{Lugar de Raíces}
+
+Luego, para analizar el gráfico de Lugar de Raíces, se comienza marcando polos y ceros y uniendo mediante segmentos cuando corresponda (cantidad par de polos y ceros a la derecha del polo o cero analizado, pues el signo negativo del retardo invierte las condiciones).
+Los segmentos quedan comprendidos de la siguiente manera:\\
+\begin{flushleft}
+Segmento 1: entre los polos $-2,69$ ($p_1$) y $-28,35$ ($p_2$) \\
+Segmento 2: entre el polo $-1,27$ ($p_0$) y el cero $-0,916$ ($z_0$) \\
+Segmento 3: desde el cero aportado por el retardo $0,067$ ($z_1$) hasta $+\infty$
+\end{flushleft}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/SegmentosEjercicio4.png}
+    \caption{Segmentos entre polos y ceros para el caso con retardo.}
+    \label{fig:segmentosPolosCeros}
+\end{figure}
+
+Además, se estudia la existencia de asíntotas. 
+Restando la cantidad de ceros a la cantidad de polos se obtiene que sólo hay una asíntota (n-m=1), y el ángulo de esta se puede calcular de la siguiente manera (recordando la inversión aportada por el signo negativo del retardo):
+\[
+\theta_q = \frac{360^\circ \cdot q}{n-m} = 0^\circ
+\]
+
+Debido a que la asíntota es una y su ángulo respecto al eje es de $0^\circ$, no es necesario calcular el centroide.
+
+Luego, se obtiene K en función de S para derivar la función y hallar puntos de fuga o ingreso:
+
+\[
+K = \frac{s^3+32,31s^2+115,6823s+96,85}{15s^2+12,75s-0,915}
+\]
+
+Derivando:
+
+\[
+\frac{d K}{d s} = \frac{15s^4 + 25,5s^3 -1326,028s^2 - 2964,6273s - 1340,6875}{(15s^2+12,75s-0,915)^2} = 0
+\]
+
+Del polinomio se obtienen las soluciones:
+\begin{align*}
+\boxed{s_1 \approx -9,13} &\Rightarrow \text{está dentro del primer segmento, entre dos polos,}\\ &\quad \text{representa un punto de ruptura} \\
+\boxed{s_2 \approx 9,663} &\Rightarrow \text{está dentro del tercer segmento, entre el cero y $+\infty$,}\\ &\quad \text{representa un punto de ingreso} \\
+\boxed{s_3 \approx -1,6} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta} \\
+\boxed{s_4 \approx -0,63} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta}
+\end{align*}
+
+Contando con un punto de ruptura y un punto de ingreso, se procede a estudiar el cruce por el eje imaginario de los arcos formados por el punto de fuga. 
+Se utiliza la tabla de Routh-Hurwitz. Ya que la fila de $s^1$ es la que da el intervalo de ganancias con condición estable, se obtiene dicho cruce reemplazando el límite $K=2,079$ en la fila anterior ($s^2$) igualada a cero:
+
+\[
+s^2\cdot (32,31 - 15 \cdot 2,079) + (96,85 + 0,916 \cdot 2,079) = 0 \Rightarrow \boxed{ s = \pm j9,37 }
+\]
+
+Finalmente, se puede graficar el lugar de raíces con los segmentos especificados.
+Cuenta con dos curvas naciendo en $s=-9,13$ ($p_2$ origina un segmento que se desplaza hacia la derecha y $p_1$ origina un segmento que se desplaza hacia la izquierda, cruzándose en el punto de fuga donde se origina el "despegue"), y luego se reúnen en el punto de ingreso $s=9,663$ (donde uno de los segmentos va hacia $z_1$ y el otro hacia $+\infty$).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/lugar_raices_retardo.png}
+    \caption{Gráfico del lugar de raíces, en el caso del sistema con retardo.}
+    \label{fig:lugarraicesretardo}
+\end{figure}
+
+\subsection*{Sistema sin retardo}
+
+
+\[
+G(s) = \frac{K\cdot (s+0.916)}{(s+1,27)(s+2,69)(s+28,35)}
+\]
+
+\subsubsection*{Método de Routh-Hurwitz}
+
+Primero, se desarrolla la ecuación característica, llegando a:
+
+$s^3 + 32,31 s^2 + (115,6823 + K)s + (96,85 + 0,916K) = 0$
+
+La tabla de Routh-Hurwitz resultante es:
+\[
+\renewcommand{\arraystretch}{1.8}
+\begin{array}{c|cc}
+s^3 & 1 & 115,68 + K \\
+s^2 & 32,31 & 96,85 + 0,915K \\
+\hline
+s^1 & \frac{3640,845 + 31,394K}{32,31} & 0 \\
+s^0 & 96,85 + 0,915K & 0 \\
+\end{array}
+\]
+
+En la primera fila, se establece como condición que la primera columna de cada fila sea positiva para mantener estabilidad (pues 1 es mayor a cero).
+
+Esta condición se cumple con la segunda, pues $32,31$ es un número positivo.
+
+En la tercer fila, hay que analizar la desigualdad para llegar a la condición para K:
+
+\[
+\frac{3640,845 + 31,394K}{32,31} > 0 \Rightarrow \boxed{K>-115,976}
+\]
+
+Finalmente, en la cuarta fila ocurre algo similar:
+\[
+96,85+0,915K > 0 \Rightarrow \boxed{K>-105,85}
+\]
+
+
+Por ende, la condición de K para que el sistema sin retardo sea estable es:
+
+\[
+\boxed{0<K}
+\]
+
+\subsubsection*{Lugar de Raíces}
+
+En este caso, la función presenta tres polos y un cero. Debido a la ausencia del retardo (que invertía las condiciones en el caso anterior), ahora los segmentos se dibujan cuando hay una cantidad impar de polos y ceros a la derecha del polo o cero analizado.
+Los intervalos resultantes son:\\
+\begin{flushleft}
+Segmento 1: entre los polos $-2,69$ ($p_1$) y $-28,35$ ($p_2$) \\
+Segmento 2: entre el polo $-1,27$ ($p_0$) y el cero $-0,916$ ($z_0$)
+\end{flushleft}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/segmentos_eje_real_sin_retardo.png}
+    \caption{Segmentos entre polos y ceros para el caso sin retardo.}
+    \label{fig:segmentosPolosCerosSinRetardo}
+\end{figure}
+
+El estudio de las asíntotas devuelve los siguientes resultados:
+\begin{alignat*}{2}
+& \hspace{1.5cm} n-m = 2 &&\Rightarrow \text{hay dos asíntotas} \\
+& \theta_q = \frac{180^\circ \cdot (2q+1)}{n-m} = 90^\circ, 270^\circ \qquad &&\Rightarrow \text{a falta de la inversión que causaba el retardo,} \\
+& &&\phantom{\Rightarrow} \text{ la fórmula es distinta que en el caso anterior}
+\end{alignat*}
+en cuanto a las asíntotas, y:
+\[
+\sigma_a
+=
+\frac{\sum p_i-\sum z_i}{n-m}
+=
+\frac{-31,394}{2} \approx -15,697.
+\]
+en cuanto al centroide.\\
+
+Por ende, se concluye que la función cuenta con dos asíntotas que hacen que la función tienda a $-15,697$, con ángulos de $90^\circ$ y $270^\circ$.
+
+Luego, obteniendo K en función de S y luego derivando se pueden hallar las ubicaciones específicas del punto de fuga entre ambos polos.
+
+\[
+\frac{d K}{d s} = \frac{-2s^3-35,055s^2-59,1273s-9}{(s+0,915)^2} = 0
+\]
+
+Del polinomio se obtienen las soluciones:
+\begin{align*}
+\boxed{s_1 \approx -15,65} &\Rightarrow \text{está dentro del primer segmento, entre dos polos,}\\ &\quad \text{representa el punto de ruptura} \\
+\boxed{s_2 \approx -0,17} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta} \\
+\boxed{s_3 \approx -1,6} &\Rightarrow \text{no está en ningún intervalo de interés, se descarta} \\
+\end{align*}
+
+Habiendo obtenido la ubicación exacta del punto de fuga, se puede realizar el gráfico de Lugar de Raíces.
+Este cuenta con dos segmentos (entre $p_1$ y $p_2$ y entre $p_0$ y $z_0$). 
+En el segmento entre los dos polos, una línea nace de cada uno en dirección al punto de ruptura, causando que en este cruce una ascienda (ángulo de $90^\circ$) y otra descienda (ángulo de $270^\circ$).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Imagenes/lugar_raices_sin_retardo.png}
+    \caption{Gráfico del lugar de raíces, en el caso del sistema sin retardo.}
+    \label{fig:lugarraicesretardo}
+\end{figure}
+
+\subsection*{Comparación}
+
+La mayor conclusión que se puede extraer en ambos casos se relaciona con las cotas de las ganancias. En el caso con retardo, la ganancia queda acotada entre $0$ y $2,079$. En cambio, sin el retardo, el sistema es estable con cualquier ganancia positiva.
+Es decir, el retardo introduce limitaciones sobre el sistema debido a la presencia de un cero adicional en el semiplano derecho, "arrastrando" el lugar de raíces hacia la inestabilidad.
+
+En la aplicación real, se puede analizar que la estabilidad incondicional es un caso ideal en donde la estabilidad teórica es independiente de la ganancia que se le aplique al sistema. En cambio, que haya una limitación en la ganancia puede ser un modelo más fiel a la realidad, y esta limitación surge por el límite físico impuesto por los tiempos muertos.
+
+
 \clearpage
 \section*{Ejercicio 8}
 
