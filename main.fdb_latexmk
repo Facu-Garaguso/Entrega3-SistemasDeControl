@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1790609292.77474 "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" "main.pdf" "main" 1790609295.00205 0
+["pdflatex"] 1790609802.02132 "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" "main.pdf" "main" 1790609804.8386 0
   "Imagenes/BodeFase_Ej8.png" 1790544881 93730 a6b5413f8a691a9389a9316543e42e7e ""
   "Imagenes/BodeModulo_Ej8.png" 1790544881 125130 dbad45a6498fc1a13b855e6e4abf073a ""
   "Imagenes/CeroAdicional.png" 1790544881 82358 44d2b6ee199e4aa64e30988ed00109c5 ""
@@ -121,10 +121,10 @@
   "c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1788902891 5655996 795b756740562267ad2ae16e70168a76 ""
   "c:/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1788902988 3658215 40d107640da31ad15f5dd6216f7d90b2 ""
   "c:/texlive/2026/texmf.cnf" 1788902848 713 e69b156964470283e0530f5060668171 ""
-  "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" 1790609291 45648 2fd2d37d2aeb5ae3aedd8c6147360ae2 ""
-  "main.aux" 1790609294 7239 bf22d4c476fbc399d254925b37717660 "pdflatex"
-  "main.out" 1790609293 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1790609291 45648 2fd2d37d2aeb5ae3aedd8c6147360ae2 ""
+  "d:/Usuarios/Escritorio/Carpetas/Archivos e Imagenes/Facultad/ITBA 2026/2Q/Sistemas de Control/Entrega3-SistemasDeControl/main.tex" 1790609800 45639 911be5de7b5aad65e85b6a262fe7ba5f ""
+  "main.aux" 1790609804 7239 bf22d4c476fbc399d254925b37717660 "pdflatex"
+  "main.out" 1790609803 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1790609800 45639 911be5de7b5aad65e85b6a262fe7ba5f ""
   (generated)
   "main.aux"
   "main.log"
