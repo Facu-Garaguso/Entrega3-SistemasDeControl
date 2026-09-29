@@ -48,39 +48,54 @@
     Facundo Garaguso Fernandez
 }
 
-\date{Fecha de entrega: }
+\date{Fecha de entrega: 29 de septiembre de 2026}
 
 \begin{document}
 
 \maketitle
+
 \clearpage
 
 \section*{Ejercicio 2}
+
 Se estudia el lugar de raíces y la estabilidad de los sistemas
 considerando realimentación unitaria negativa. Por lo tanto,
 la ecuación característica de lazo cerrado es:
+
 \[
 1+G(s)=0.
 \]
 
-Para construir los lugares de raíces se considera $K\geq 0$.
+Para construir los lugares de raíces se considera $K\geq0$.
 En el análisis de Routh--Hurwitz también se indica el intervalo
 de estabilidad cuando se permiten valores negativos de $K$.
+
+
+% =========================================================
+% INCISO A
+% =========================================================
 
 \subsection*{a) Sistema con un cero adicional}
 
 La transferencia de lazo abierto es:
+
 \[
-G(s)=\frac{K(s+z)}{z(s+2)(s+10)},
-\qquad z=100 \quad \text{o} \quad z=15.
+G(s)
+=
+\frac{K(s+z)}
+{z(s+2)(s+10)},
+\qquad
+z=100 \quad \text{o} \quad z=15.
 \]
 
 Los polos se encuentran en $s=-2$ y $s=-10$, mientras que
 el cero se encuentra en $s=-z$.
 
+
 \subsubsection*{Ecuación característica y estabilidad}
 
 A partir de la condición $1+G(s)=0$:
+
 \begin{align*}
 z(s+2)(s+10)+K(s+z)&=0,\\
 z(s^2+12s+20)+Ks+Kz&=0,\\
@@ -88,6 +103,7 @@ zs^2+(12z+K)s+z(20+K)&=0.
 \end{align*}
 
 La tabla de Routh es:
+
 \[
 \begin{array}{c|cc}
 s^2 & z       & z(20+K)\\
@@ -98,6 +114,7 @@ s^0 & z(20+K) & 0
 
 Como $z>0$, para que todos los elementos de la primera
 columna sean positivos debe cumplirse:
+
 \[
 12z+K>0,
 \qquad
@@ -105,86 +122,133 @@ z(20+K)>0.
 \]
 
 Por lo tanto:
+
 \[
 K>-12z,
-\qquad K>-20.
+\qquad
+K>-20.
 \]
 
 Para $z=100$ y $z=15$, la condición más restrictiva es:
+
 \[
 \boxed{K>-20.}
 \]
 
-En particular, ambos sistemas son estables para todo $K\geq 0$.
+En particular, ambos sistemas son estables para todo $K\geq0$.
 
-\subsubsection*{Punto de fuga}
+
+\subsubsection*{Puntos de fuga y reingreso}
 
 Despejando $K$ de la ecuación característica:
+
 \[
-K(s)=-\frac{z(s+2)(s+10)}{s+z}
-    =-\frac{z(s^2+12s+20)}{s+z}.
+K(s)
+=
+-\frac{z(s+2)(s+10)}{s+z}
+=
+-\frac{z(s^2+12s+20)}{s+z}.
 \]
 
-Para encontrar el punto de fuga se plantea:
+Para encontrar los puntos estacionarios del lugar de raíces se plantea:
+
 \[
 \frac{dK}{ds}=0.
 \]
 
 Derivando:
+
 \[
 \frac{dK}{ds}
 =
--z\frac{(2s+12)(s+z)-(s^2+12s+20)}
-{(s+z)^2}.
+-z
+\frac{
+(2s+12)(s+z)-(s^2+12s+20)
+}{
+(s+z)^2
+}.
 \]
 
 Por lo tanto:
+
 \begin{align*}
 (2s+12)(s+z)-(s^2+12s+20)&=0,\\
 s^2+2zs+12z-20&=0.
 \end{align*}
 
-Se busca la solución ubicada entre los polos $-10$ y $-2$,
-donde las ramas se acercan al aumentar $K$ desde cero.
-En ese intervalo, $K(s)$ es positiva y se anula en ambos
-extremos. El punto de fuga corresponde al máximo de
-$K(s)$ dentro de dicho tramo.
+Las dos soluciones son:
 
-Para los valores de $z$ considerados, esa solución es:
 \[
-\boxed{s_f=-z+\sqrt{z^2-12z+20}.}
+\boxed{
+s_{\pm}
+=
+-z\pm\sqrt{z^2-12z+20}.
+}
 \]
 
-En este punto, los dos polos reales de lazo cerrado
-coinciden y, al seguir aumentando $K$, forman un par
-complejo conjugado.
+La solución
+
+\[
+s_f
+=
+-z+\sqrt{z^2-12z+20}
+\]
+
+se encuentra entre los polos $-10$ y $-2$ y corresponde
+al punto de fuga de las ramas que parten de dichos polos.
+
+La segunda solución,
+
+\[
+s_r
+=
+-z-\sqrt{z^2-12z+20},
+\]
+
+debe analizarse para determinar si pertenece a otro tramo
+del lugar de raíces.
+
+Para los dos valores de $z$ considerados corresponde a
+una ganancia positiva y se encuentra sobre el tramo situado
+a la izquierda del cero. Por lo tanto, representa un punto
+de reingreso al eje real.
+
 
 \subsubsection*{Asíntota y centroide}
 
 El sistema tiene dos polos y un cero, por lo que existe
 una única asíntota:
+
 \[
 n-m=2-1=1.
 \]
 
 Su ángulo es:
+
 \[
-\theta_q=\frac{(2q+1)180^\circ}{n-m}.
+\theta_q
+=
+\frac{(2q+1)180^\circ}{n-m}.
 \]
 
 Para $q=0$:
+
 \[
 \boxed{\theta=180^\circ.}
 \]
 
 El centroide resulta:
+
 \[
-\sigma_a=
+\sigma_a
+=
 \frac{\sum p_i-\sum z_i}{n-m}
 =
-\frac{-2-10-(-z)}{1},
+\frac{-2-10-(-z)}{1}.
 \]
-de donde:
+
+Por lo tanto:
+
 \[
 \boxed{\sigma_a=z-12.}
 \]
@@ -192,168 +256,460 @@ de donde:
 El centroide ubica la asíntota; no representa, en general,
 un polo ni un punto de fuga.
 
+
+% =========================================================
+% CASO z = 100
+% =========================================================
+
 \subsubsection*{Caso $z=100$}
 
 La transferencia es:
+
 \[
-G(s)=\frac{K(s+100)}{100(s+2)(s+10)}.
+G(s)
+=
+\frac{K(s+100)}
+{100(s+2)(s+10)}.
 \]
 
 Los polos y el cero son:
+
 \[
-p_1=-2,\qquad p_2=-10,\qquad z_1=-100.
+p_1=-2,
+\qquad
+p_2=-10,
+\qquad
+z_1=-100.
 \]
+
 
 \paragraph{Zonas del lugar de raíces.}
 
 Un tramo del eje real pertenece al lugar de raíces para
-$K\geq 0$ si tiene una cantidad impar de polos y ceros
+$K\geq0$ si tiene una cantidad impar de polos y ceros
 reales a su derecha.
 
 Por lo tanto, los tramos que pertenecen al lugar son:
+
 \[
-\boxed{(-\infty,-100)\ \cup\ (-10,-2).}
+\boxed{
+(-\infty,-100)\ \cup\ (-10,-2).
+}
 \]
 
-% Caso z = 100
+En primer lugar se representan únicamente las zonas
+pertenecientes al lugar sobre el eje real:
+
 \graficozonas
     {ZonaLR_z100.png}
     {Zonas del eje real pertenecientes al lugar de raíces
-    para $z=100$.}
+    para el sistema con cero adicional en $s=-100$.}
     {fig:zonas-z100}
+
 
 \paragraph{Punto de fuga.}
 
 La condición $\frac{dK}{ds}=0$ resulta:
+
 \[
 s^2+200s+1180=0.
 \]
 
-Se toma la solución:
+La solución ubicada entre los polos es:
+
 \[
-\boxed{s_f=-100+\sqrt{8820}\approx-6{,}0851.}
+\boxed{
+s_f
+=
+-100+\sqrt{8820}
+\approx-6{,}0851.
+}
 \]
 
-Nos quedamos con este valor porque se encuentra en
-$(-10,-2)$, entre los dos polos de lazo abierto, y
-corresponde al máximo de $K(s)$ en ese tramo.
-La ganancia asociada es positiva:
+Este valor pertenece al tramo $(-10,-2)$.
+
+La ganancia asociada es:
+
 \[
-K_f=
--\frac{100(s_f+2)(s_f+10)}{s_f+100}
-\approx17{,}0290.
+K_f
+=
+-\frac{
+100(s_f+2)(s_f+10)
+}{
+s_f+100
+}.
 \]
 
-Así, las ramas que parten de $-2$ y $-10$ se encuentran
-en $s_f\approx-6{,}0851$ y se separan del eje real
-al aumentar $K$ por encima de $K_f$.
+Numéricamente:
 
-\paragraph{Asíntota y estabilidad.}
+\[
+\boxed{
+K_f\approx17{,}0290.
+}
+\]
+
+Las ramas que parten de $-2$ y $-10$ se encuentran
+en $s_f$ y abandonan el eje real para $K>K_f$.
+
+
+\paragraph{Punto de reingreso.}
+
+La segunda solución es:
+
+\[
+s_r
+=
+-100-\sqrt{8820}.
+\]
+
+Numéricamente:
+
+\[
+\boxed{
+s_r\approx-193{,}9149.
+}
+\]
+
+Este valor pertenece al tramo:
+
+\[
+(-\infty,-100),
+\]
+
+que también forma parte del lugar de raíces.
+
+La ganancia correspondiente es:
+
+\[
+K_r
+=
+-\frac{
+100(s_r+2)(s_r+10)
+}{
+s_r+100
+}.
+\]
+
+Por lo tanto:
+
+\[
+\boxed{
+K_r\approx3{,}7583\times10^4.
+}
+\]
+
+Como $K_r>0$, este punto pertenece al lugar de raíces
+para $K\geq0$.
+
+
+\paragraph{Descripción completa del lugar de raíces.}
+
+Las dos ramas parten de los polos $-10$ y $-2$ cuando
+$K=0$ y se desplazan sobre el tramo $(-10,-2)$.
+
+Se encuentran en:
+
+\[
+s_f\approx-6{,}0851,
+\qquad
+K_f\approx17{,}0290.
+\]
+
+Para $K>K_f$, forman un par complejo conjugado y
+abandonan el eje real.
+
+Al continuar aumentando la ganancia, ambas ramas regresan
+al eje real en:
+
+\[
+s_r\approx-193{,}9149,
+\qquad
+K_r\approx3{,}7583\times10^4.
+\]
+
+A partir de este punto, una rama se dirige hacia el cero:
+
+\[
+s=-100,
+\]
+
+mientras que la otra continúa hacia $-\infty$ siguiendo
+la asíntota de $180^\circ$.
 
 El centroide y el ángulo de la asíntota son:
+
 \[
-\boxed{\sigma_a=88,\qquad\theta=180^\circ.}
+\boxed{
+\sigma_a=88,
+\qquad
+\theta=180^\circ.
+}
 \]
 
-Aunque el centroide sea positivo, la asíntota está sobre
-el eje real y se orienta hacia $-\infty$. Esto no implica
-que el lugar de raíces ingrese al semiplano derecho.
+Todo el lugar de raíces correspondiente a $K\geq0$
+permanece en el semiplano izquierdo, en concordancia
+con Routh--Hurwitz.
 
 El intervalo de estabilidad es:
+
 \[
 \boxed{K>-20.}
 \]
+
+Una vez realizados los cálculos anteriores, se representa
+el lugar de raíces completo en el plano complejo:
+
+\graficozonas
+    {LR_Ej2_z100.png}
+    {Lugar de raíces completo para el sistema con cero adicional
+    en $s=-100$. Las ramas parten de los polos $-10$ y $-2$,
+    se encuentran en $s_f\approx-6{,}0851$, forman un par
+    complejo conjugado y reingresan al eje real en
+    $s_r\approx-193{,}9149$. Una rama termina en el cero
+    $s=-100$ y la otra se dirige hacia $-\infty$.}
+    {fig:lr-ej2-z100}
+
+
+% =========================================================
+% CASO z = 15
+% =========================================================
 
 \subsubsection*{Caso $z=15$}
 
 La transferencia es:
+
 \[
-G(s)=\frac{K(s+15)}{15(s+2)(s+10)}.
+G(s)
+=
+\frac{K(s+15)}
+{15(s+2)(s+10)}.
 \]
 
 Los polos y el cero son:
+
 \[
-p_1=-2,\qquad p_2=-10,\qquad z_1=-15.
+p_1=-2,
+\qquad
+p_2=-10,
+\qquad
+z_1=-15.
 \]
+
 
 \paragraph{Zonas del lugar de raíces.}
 
 Aplicando la regla de cantidad impar de polos y ceros
-reales a la derecha, los tramos que pertenecen al lugar son:
+reales a la derecha, los tramos pertenecientes al lugar son:
+
 \[
-\boxed{(-\infty,-15)\ \cup\ (-10,-2).}
+\boxed{
+(-\infty,-15)\ \cup\ (-10,-2).
+}
 \]
 
-% Caso z = 15
+En primer lugar se representan únicamente estos tramos
+sobre el eje real:
+
 \graficozonas
     {ZonaLR_z15.png}
     {Zonas del eje real pertenecientes al lugar de raíces
-    para $z=15$.}
+    para el sistema con cero adicional en $s=-15$.}
     {fig:zonas-z15}
+
 
 \paragraph{Punto de fuga.}
 
 La condición $\frac{dK}{ds}=0$ resulta:
+
 \[
 s^2+30s+160=0.
 \]
 
-Se toma la solución:
+La solución ubicada entre los polos es:
+
 \[
-\boxed{s_f=-15+\sqrt{65}\approx-6{,}9377.}
+\boxed{
+s_f
+=
+-15+\sqrt{65}
+\approx-6{,}9377.
+}
 \]
 
-Se elige este valor porque pertenece al tramo $(-10,-2)$,
-donde las ramas que parten de los dos polos se acercan
-al aumentar $K$. Además, corresponde al máximo de
-$K(s)$ en ese intervalo y presenta ganancia positiva:
+La ganancia correspondiente es:
+
 \[
-K_f=
--\frac{15(s_f+2)(s_f+10)}{s_f+15}
-\approx28{,}1323.
+K_f
+=
+-\frac{
+15(s_f+2)(s_f+10)
+}{
+s_f+15
+}.
 \]
 
-En $s_f\approx-6{,}9377$, las ramas se encuentran y,
-para ganancias inmediatamente superiores a $K_f$,
-forman un par complejo conjugado.
+Así:
 
-\paragraph{Asíntota y estabilidad.}
+\[
+\boxed{
+K_f\approx28{,}1323.
+}
+\]
+
+Las ramas se encuentran en $s_f$ y, para ganancias
+superiores a $K_f$, forman un par complejo conjugado.
+
+
+\paragraph{Punto de reingreso.}
+
+La segunda solución es:
+
+\[
+s_r
+=
+-15-\sqrt{65}.
+\]
+
+Numéricamente:
+
+\[
+\boxed{
+s_r\approx-23{,}0623.
+}
+\]
+
+Este punto pertenece al tramo:
+
+\[
+(-\infty,-15).
+\]
+
+La ganancia correspondiente es:
+
+\[
+K_r
+=
+-\frac{
+15(s_r+2)(s_r+10)
+}{
+s_r+15
+}.
+\]
+
+Por lo tanto:
+
+\[
+\boxed{
+K_r\approx511{,}868.
+}
+\]
+
+Como $K_r>0$, esta solución pertenece al lugar de raíces.
+
+
+\paragraph{Descripción completa del lugar de raíces.}
+
+Las ramas parten de los polos $-10$ y $-2$ y se desplazan
+sobre el tramo $(-10,-2)$ hasta encontrarse en:
+
+\[
+s_f\approx-6{,}9377,
+\qquad
+K_f\approx28{,}1323.
+\]
+
+Para ganancias superiores a $K_f$, forman un par
+complejo conjugado.
+
+Al aumentar nuevamente la ganancia, las ramas regresan
+al eje real en:
+
+\[
+s_r\approx-23{,}0623,
+\qquad
+K_r\approx511{,}868.
+\]
+
+A partir de allí, una de las ramas termina en:
+
+\[
+s=-15,
+\]
+
+mientras que la otra continúa hacia $-\infty$ siguiendo
+la asíntota de $180^\circ$.
 
 El centroide y el ángulo de la asíntota son:
+
 \[
-\boxed{\sigma_a=3,\qquad\theta=180^\circ.}
+\boxed{
+\sigma_a=3,
+\qquad
+\theta=180^\circ.
+}
 \]
 
+Todo el lugar de raíces correspondiente a $K\geq0$
+permanece en el semiplano izquierdo.
+
 El intervalo de estabilidad es:
+
 \[
 \boxed{K>-20.}
 \]
 
+Luego se representa el lugar de raíces completo en
+el plano complejo:
+
+\graficozonas
+    {LR_Ej2_z15.png}
+    {Lugar de raíces completo para el sistema con cero adicional
+    en $s=-15$. Las ramas parten de los polos $-10$ y $-2$,
+    se encuentran en $s_f\approx-6{,}9377$, forman un par
+    complejo conjugado y vuelven al eje real en
+    $s_r\approx-23{,}0623$. Una rama termina en el cero
+    $s=-15$ y la otra se dirige hacia $-\infty$.}
+    {fig:lr-ej2-z15}
+
+
+% =========================================================
+% INCISO B
+% =========================================================
+
 \subsection*{b) Sistema con un polo adicional}
 
 La transferencia de lazo abierto es:
+
 \[
-G(s)=\frac{Kp}{(s+2)(s+10)(s+p)},
-\qquad p=100 \quad \text{o} \quad p=15.
+G(s)
+=
+\frac{Kp}
+{(s+2)(s+10)(s+p)},
+\qquad
+p=100 \quad \text{o} \quad p=15.
 \]
 
 El sistema tiene tres polos, ubicados en $-2$, $-10$
 y $-p$, y no tiene ceros finitos.
 
+
 \subsubsection*{Ecuación característica y estabilidad}
 
 La ecuación característica es:
+
 \[
 (s+2)(s+10)(s+p)+Kp=0.
 \]
 
 Desarrollando:
+
 \begin{align*}
 (s^2+12s+20)(s+p)+Kp&=0,\\
 s^3+(12+p)s^2+(20+12p)s+p(20+K)&=0.
 \end{align*}
 
 La tabla de Routh es:
+
 \[
 \begin{array}{c|cc}
 s^3 & 1       & 20+12p\\
@@ -362,262 +718,566 @@ s^1 & b_1     & 0\\
 s^0 & p(20+K) & 0
 \end{array}
 \]
+
 donde:
+
 \begin{align*}
 b_1
-&=\frac{(12+p)(20+12p)-p(20+K)}{12+p}\\
-&=\frac{12p^2+144p+240-Kp}{12+p}.
+&=
+\frac{
+(12+p)(20+12p)-p(20+K)
+}{
+12+p
+}\\
+&=
+\frac{
+12p^2+144p+240-Kp
+}{
+12+p
+}.
 \end{align*}
 
 Como $p>0$, las condiciones de estabilidad son:
+
 \[
 12p^2+144p+240-Kp>0,
-\qquad
+\]
+
+\[
 p(20+K)>0.
 \]
 
 Despejando:
+
 \[
 K<12p+144+\frac{240}{p},
-\qquad K>-20.
+\qquad
+K>-20.
 \]
 
 Por lo tanto:
+
 \[
-\boxed{-20<K<12p+144+\frac{240}{p}.}
+\boxed{
+-20<K<12p+144+\frac{240}{p}.
+}
 \]
+
 
 \subsubsection*{Punto de fuga}
 
 Despejando la ganancia:
+
 \[
-K(s)=-\frac{(s+2)(s+10)(s+p)}{p}.
+K(s)
+=
+-\frac{(s+2)(s+10)(s+p)}{p}.
 \]
 
 Equivalentemente:
+
 \[
-K(s)=-\frac{
+K(s)
+=
+-\frac{
 s^3+(12+p)s^2+(20+12p)s+20p
 }{p}.
 \]
 
 Derivando:
+
 \[
 \frac{dK}{ds}
 =
 -\frac{1}{p}
-\left[3s^2+2(12+p)s+(20+12p)\right].
+\left[
+3s^2+2(12+p)s+(20+12p)
+\right].
 \]
 
 La condición para determinar el punto de fuga es:
+
 \[
-\boxed{3s^2+2(12+p)s+(20+12p)=0.}
+\boxed{
+3s^2+2(12+p)s+(20+12p)=0.
+}
 \]
 
 Se selecciona la solución ubicada en $(-10,-2)$,
-que corresponde a una ganancia positiva y al máximo
-de $K(s)$ entre los polos de ese tramo.
-Para los valores de $p$ considerados:
-\[
-\boxed{
-s_f=
-\frac{-(12+p)+\sqrt{(12+p)^2-3(20+12p)}}{3}.
-}
-\]
+que corresponde a una ganancia positiva.
+
 
 \subsubsection*{Asíntotas y centroide}
 
 Como hay tres polos y ningún cero finito:
+
 \[
 n-m=3.
 \]
 
 Los ángulos de las asíntotas son:
+
 \[
-\theta_q=\frac{(2q+1)180^\circ}{3},
-\qquad q=0,1,2.
+\theta_q
+=
+\frac{(2q+1)180^\circ}{3},
+\qquad
+q=0,1,2.
 \]
 
 Por lo tanto:
+
 \[
-\boxed{\theta=60^\circ,\ 180^\circ,\ 300^\circ.}
+\boxed{
+\theta=60^\circ,\ 180^\circ,\ 300^\circ.
+}
 \]
 
-El ángulo $300^\circ$ también puede expresarse como
-$-60^\circ$.
+Equivalentemente:
+
+\[
+\boxed{
+\theta=60^\circ,\ -60^\circ,\ 180^\circ.
+}
+\]
 
 El centroide es:
+
 \[
-\boxed{\sigma_a=\frac{-2-10-p}{3}
-=-\frac{12+p}{3}.}
+\boxed{
+\sigma_a
+=
+-\frac{12+p}{3}.
+}
 \]
+
+
+% =========================================================
+% CASO p = 100
+% =========================================================
 
 \subsubsection*{Caso $p=100$}
 
 La transferencia es:
+
 \[
-G(s)=\frac{100K}{(s+2)(s+10)(s+100)}.
+G(s)
+=
+\frac{100K}
+{(s+2)(s+10)(s+100)}.
 \]
+
 
 \paragraph{Zonas del lugar de raíces.}
 
 Los tramos del eje real que tienen una cantidad impar
-de polos a su derecha y, por lo tanto, pertenecen al
-lugar de raíces son:
+de polos a su derecha son:
+
 \[
-\boxed{(-\infty,-100)\ \cup\ (-10,-2).}
+\boxed{
+(-\infty,-100)\ \cup\ (-10,-2).
+}
 \]
 
-% Caso p = 100
+Primero se representan únicamente estos segmentos sobre
+el eje real:
+
 \graficozonas
     {ZonaLR_p100.png}
     {Zonas del eje real pertenecientes al lugar de raíces
-    para $p=100$.}
+    para el sistema con polo adicional en $s=-100$.}
     {fig:zonas-p100}
+
 
 \paragraph{Estabilidad.}
 
 El intervalo de estabilidad resulta:
+
 \[
--20<K<12(100)+144+\frac{240}{100},
+-20
+<
+K
+<
+12(100)+144+\frac{240}{100}.
 \]
-es decir:
+
+Por lo tanto:
+
 \[
-\boxed{-20<K<1346{,}4.}
+\boxed{
+-20<K<1346{,}4.
+}
 \]
 
 Para ganancias no negativas:
+
 \[
-\boxed{0\leq K<1346{,}4.}
+\boxed{
+0\leq K<1346{,}4.
+}
 \]
+
 
 \paragraph{Punto de fuga.}
 
 La condición $\frac{dK}{ds}=0$ resulta:
+
 \[
 3s^2+224s+1220=0.
 \]
 
 Se toma la solución:
+
 \[
 \boxed{
-s_f=\frac{-112+\sqrt{8884}}{3}
+s_f
+=
+\frac{-112+\sqrt{8884}}{3}
 \approx-5{,}9150.
 }
 \]
 
-Se elige este valor porque se encuentra entre los polos
-$-10$ y $-2$, dentro de un tramo perteneciente al lugar
-de raíces, y corresponde al máximo de $K(s)$ en ese
-intervalo. Su ganancia es positiva:
+La ganancia correspondiente es:
+
 \[
-K_f=
--\frac{(s_f+2)(s_f+10)(s_f+100)}{100}
-\approx15{,}0468.
+K_f
+=
+-\frac{
+(s_f+2)(s_f+10)(s_f+100)
+}{
+100
+}.
+\]
+
+Numéricamente:
+
+\[
+\boxed{
+K_f\approx15{,}0468.
+}
+\]
+
+Por lo tanto:
+
+\[
+\boxed{
+s_f\approx-5{,}9150,
+\qquad
+K_f\approx15{,}0468.
+}
 \]
 
 Las ramas que parten de $-2$ y $-10$ se encuentran
-en este punto y forman un par complejo conjugado
-al aumentar $K$ por encima de $K_f$.
+en este punto y forman un par complejo conjugado.
 
-\paragraph{Asíntotas.}
+
+\paragraph{Asíntotas y cruce del eje imaginario.}
 
 El centroide es:
+
 \[
-\boxed{\sigma_a=-\frac{112}{3}\approx-37{,}3333.}
+\boxed{
+\sigma_a
+=
+-\frac{112}{3}
+\approx-37{,}3333.
+}
 \]
 
 Los ángulos de las asíntotas son:
+
 \[
-\boxed{\theta=60^\circ,\ -60^\circ,\ 180^\circ.}
+\boxed{
+\theta=60^\circ,\ -60^\circ,\ 180^\circ.
+}
 \]
 
+La ganancia crítica obtenida mediante Routh es:
+
+\[
+\boxed{
+K_{\mathrm{cr}}=1346{,}4.
+}
+\]
+
+En este valor, los polos complejos se encuentran sobre
+el eje imaginario en:
+
+\[
+s
+=
+\pm j\sqrt{20+12(100)}.
+\]
+
+Por lo tanto:
+
+\[
+\boxed{
+s\approx\pm j\,34{,}9285.
+}
+\]
+
+
+\paragraph{Descripción completa del lugar de raíces.}
+
+La rama que parte del polo $-100$ se desplaza sobre el eje
+real hacia $-\infty$.
+
+Las ramas que parten de los polos $-10$ y $-2$ se aproximan
+hasta encontrarse en:
+
+\[
+s_f\approx-5{,}9150.
+\]
+
+Luego abandonan el eje real y forman un par complejo conjugado.
+
+Al aumentar la ganancia, estas ramas cruzan el eje imaginario
+cuando:
+
+\[
+K=K_{\mathrm{cr}}=1346{,}4
+\]
+
+en:
+
+\[
+s\approx\pm j\,34{,}9285.
+\]
+
+Para $K>K_{\mathrm{cr}}$, ambas ramas ingresan al semiplano
+derecho y el sistema se vuelve inestable.
+
 Para ganancias grandes, las ramas complejas se aproximan
-a las asíntotas de $\pm60^\circ$. La rama que parte de
-$-100$ avanza sobre el eje real hacia $-\infty$.
+a las asíntotas de $\pm60^\circ$, mientras que la rama
+real continúa hacia $-\infty$ siguiendo la asíntota de
+$180^\circ$.
+
+Una vez realizado el análisis sobre el eje real y calculados
+el punto de fuga, el centroide, las asíntotas y el cruce del
+eje imaginario, se representa el lugar de raíces completo:
+
+\graficozonas
+    {LR_Ej2_p100.png}
+    {Lugar de raíces completo para el sistema con polo adicional
+    en $s=-100$. Se muestran los polos de lazo abierto, el punto
+    de fuga $s_f\approx-5{,}9150$, el centroide, las asíntotas
+    y el cruce del eje imaginario en
+    $s\approx\pm j\,34{,}9285$.}
+    {fig:lr-ej2-p100}
+
+
+% =========================================================
+% CASO p = 15
+% =========================================================
 
 \subsubsection*{Caso $p=15$}
 
 La transferencia es:
+
 \[
-G(s)=\frac{15K}{(s+2)(s+10)(s+15)}.
+G(s)
+=
+\frac{15K}
+{(s+2)(s+10)(s+15)}.
 \]
+
 
 \paragraph{Zonas del lugar de raíces.}
 
-Aplicando la regla de cantidad impar de polos a la derecha,
-los tramos del eje real pertenecientes al lugar son:
+Los tramos pertenecientes al lugar son:
+
 \[
-\boxed{(-\infty,-15)\ \cup\ (-10,-2).}
+\boxed{
+(-\infty,-15)\ \cup\ (-10,-2).
+}
 \]
 
-% Caso p = 15
+Primero se representan únicamente estos segmentos
+sobre el eje real:
+
 \graficozonas
     {ZonaLR_p15.png}
     {Zonas del eje real pertenecientes al lugar de raíces
-    para $p=15$.}
+    para el sistema con polo adicional en $s=-15$.}
     {fig:zonas-p15}
+
 
 \paragraph{Estabilidad.}
 
 El intervalo de estabilidad resulta:
+
 \[
--20<K<12(15)+144+\frac{240}{15},
+-20
+<
+K
+<
+12(15)+144+\frac{240}{15}.
 \]
-es decir:
+
+Por lo tanto:
+
 \[
-\boxed{-20<K<340.}
+\boxed{
+-20<K<340.
+}
 \]
 
 Para ganancias no negativas:
+
 \[
-\boxed{0\leq K<340.}
+\boxed{
+0\leq K<340.
+}
 \]
+
 
 \paragraph{Punto de fuga.}
 
 La condición $\frac{dK}{ds}=0$ resulta:
+
 \[
 3s^2+54s+200=0.
 \]
 
 Se toma la solución:
+
 \[
 \boxed{
-s_f=\frac{-27+\sqrt{129}}{3}
+s_f
+=
+\frac{-27+\sqrt{129}}{3}
 \approx-5{,}2141.
 }
 \]
 
-Se elige este valor porque pertenece al tramo $(-10,-2)$,
-donde las ramas que parten de ambos polos se acercan
-al aumentar $K$. Corresponde al máximo de $K(s)$
-en dicho intervalo y presenta ganancia positiva:
+La ganancia correspondiente es:
+
 \[
-K_f=
--\frac{(s_f+2)(s_f+10)(s_f+15)}{15}
-\approx10{,}0353.
+K_f
+=
+-\frac{
+(s_f+2)(s_f+10)(s_f+15)
+}{
+15
+}.
 \]
 
-En este punto, las ramas se encuentran y se separan
-del eje real como un par complejo conjugado al
-aumentar $K$ por encima de $K_f$.
+Numéricamente:
 
-\paragraph{Asíntotas.}
+\[
+\boxed{
+K_f\approx10{,}0353.
+}
+\]
+
+Por lo tanto:
+
+\[
+\boxed{
+s_f\approx-5{,}2141,
+\qquad
+K_f\approx10{,}0353.
+}
+\]
+
+
+\paragraph{Asíntotas y cruce del eje imaginario.}
 
 El centroide es:
+
 \[
-\boxed{\sigma_a=-\frac{27}{3}=-9.}
+\boxed{
+\sigma_a=-9.
+}
 \]
 
 Los ángulos de las asíntotas son:
+
 \[
-\boxed{\theta=60^\circ,\ -60^\circ,\ 180^\circ.}
+\boxed{
+\theta=60^\circ,\ -60^\circ,\ 180^\circ.
+}
 \]
 
+La ganancia crítica obtenida mediante Routh es:
+
+\[
+\boxed{
+K_{\mathrm{cr}}=340.
+}
+\]
+
+En este límite:
+
+\[
+s
+=
+\pm j\sqrt{20+12(15)}
+=
+\pm j\sqrt{200}.
+\]
+
+Por lo tanto:
+
+\[
+\boxed{
+s\approx\pm j\,14{,}1421.
+}
+\]
+
+
+\paragraph{Descripción completa del lugar de raíces.}
+
+La rama que parte del polo $-15$ se dirige sobre el eje
+real hacia $-\infty$.
+
+Las ramas que parten de los polos $-10$ y $-2$ se desplazan
+sobre el tramo $(-10,-2)$ hasta encontrarse en:
+
+\[
+s_f\approx-5{,}2141.
+\]
+
+Luego forman un par complejo conjugado.
+
+Al aumentar la ganancia, estas ramas cruzan el eje imaginario
+cuando:
+
+\[
+K=K_{\mathrm{cr}}=340
+\]
+
+en:
+
+\[
+s\approx\pm j\,14{,}1421.
+\]
+
+Para $K>340$, las dos ramas ingresan al semiplano derecho
+y el sistema se vuelve inestable.
+
 Para ganancias grandes, las ramas complejas se aproximan
-a las asíntotas de $\pm60^\circ$. La rama que parte
-de $-15$ se dirige hacia $-\infty$.
+a las asíntotas de $\pm60^\circ$, mientras que la rama real
+continúa hacia $-\infty$ siguiendo la asíntota de
+$180^\circ$.
+
+Luego del análisis de los segmentos reales y de los puntos
+característicos, se representa el lugar de raíces completo:
+
+\graficozonas
+    {LR_Ej2_p15.png}
+    {Lugar de raíces completo para el sistema con polo adicional
+    en $s=-15$. Se muestran los polos de lazo abierto, el punto
+    de fuga $s_f\approx-5{,}2141$, el centroide, las asíntotas
+    y el cruce del eje imaginario en
+    $s\approx\pm j\,14{,}1421$.}
+    {fig:lr-ej2-p15}
+
+
+% =========================================================
+% INCISO C
+% =========================================================
 
 \subsection*{c) Rangos de estabilidad}
 
@@ -627,16 +1287,40 @@ asintótica:
 
 \begin{center}
 \small
+
 \begin{tabular}{lll}
 \toprule
-Sistema & Rango de $K$ real & Rango para $K\geq 0$\\
+
+Sistema
+& Rango de $K$ real
+& Rango para $K\geq0$
+\\
+
 \midrule
-Cero en $-100$ & $K>-20$ & Todo $K\geq 0$\\
-Cero en $-15$  & $K>-20$ & Todo $K\geq 0$\\
-Polo en $-100$ & $-20<K<1346{,}4$ & $0\leq K<1346{,}4$\\
-Polo en $-15$  & $-20<K<340$ & $0\leq K<340$\\
+
+Cero en $-100$
+& $K>-20$
+& Todo $K\geq0$
+\\
+
+Cero en $-15$
+& $K>-20$
+& Todo $K\geq0$
+\\
+
+Polo en $-100$
+& $-20<K<1346{,}4$
+& $0\leq K<1346{,}4$
+\\
+
+Polo en $-15$
+& $-20<K<340$
+& $0\leq K<340$
+\\
+
 \bottomrule
 \end{tabular}
+
 \end{center}
 
 En todos los casos, para $K=-20$ aparece un polo en el
@@ -645,122 +1329,190 @@ asintótica.
 
 En los sistemas con un polo adicional, la ganancia
 crítica superior es:
+
 \[
-K_{\mathrm{cr}}=12p+144+\frac{240}{p}.
+K_{\mathrm{cr}}
+=
+12p+144+\frac{240}{p}.
 \]
 
 En ese límite, la fila $s^1$ de la tabla de Routh se
-anula. El polinomio auxiliar de la fila $s^2$ es:
+anula.
+
+El polinomio auxiliar de la fila $s^2$ es:
+
 \[
-A(s)=(12+p)s^2+p(20+K_{\mathrm{cr}}).
+A(s)
+=
+(12+p)s^2+p(20+K_{\mathrm{cr}}).
 \]
 
 Como en el límite se cumple:
+
 \[
-p(20+K_{\mathrm{cr}})=(12+p)(20+12p),
+p(20+K_{\mathrm{cr}})
+=
+(12+p)(20+12p),
 \]
+
 los polos sobre el eje imaginario son:
+
 \[
-s=\pm j\sqrt{20+12p}.
+s
+=
+\pm j\sqrt{20+12p}.
 \]
 
 Por lo tanto:
+
 \[
 \begin{array}{c|c|c}
-p & K_{\mathrm{cr}} & \text{Polos sobre el eje imaginario}\\
+p
+&
+K_{\mathrm{cr}}
+&
+\text{Polos sobre el eje imaginario}
+\\
 \hline
-100 & 1346{,}4 & s\approx\pm j\,34{,}9285\\
-15  & 340     & s\approx\pm j\,14{,}1421
+
+100
+&
+1346{,}4
+&
+s\approx\pm j\,34{,}9285
+\\
+
+15
+&
+340
+&
+s\approx\pm j\,14{,}1421
 \end{array}
 \]
 
 En estos valores críticos el sistema no es
-asintóticamente estable. Para ganancias superiores,
-dos polos se encuentran en el semiplano derecho
-y el sistema es inestable.
+asintóticamente estable.
+
+Para ganancias superiores, dos polos se encuentran
+en el semiplano derecho y el sistema es inestable.
+
+
+% =========================================================
+% INCISO D
+% =========================================================
 
 \subsection*{d) Comparación de las respuestas al escalón}
 
-Se comparan las respuestas al escalón unitario de los sistemas
-completos y sus versiones aproximadas, considerando
-realimentación unitaria negativa y condiciones iniciales nulas.
+Se comparan las respuestas al escalón unitario de los
+sistemas completos y sus versiones aproximadas,
+considerando realimentación unitaria negativa y
+condiciones iniciales nulas.
 
 Se utiliza la misma ganancia en todos los casos:
+
 \[
 \boxed{K=10.}
 \]
 
 Este valor satisface las condiciones de estabilidad obtenidas
 anteriormente: los sistemas con cero adicional son estables
-para todo $K\geq 0$, mientras que los sistemas con polo adicional
-requieren $K<1346{,}4$ para $p=100$ y $K<340$ para $p=15$.
+para todo $K\geq0$, mientras que los sistemas con polo
+adicional requieren $K<1346{,}4$ para $p=100$ y
+$K<340$ para $p=15$.
+
 
 \subsubsection*{Obtención del modelo aproximado}
 
 Para el sistema con cero adicional, la transferencia puede
 escribirse como:
+
 \[
 G_z(s)
 =
-\frac{K(s+z)}{z(s+2)(s+10)}
+\frac{K(s+z)}
+{z(s+2)(s+10)}
 =
-\frac{K}{(s+2)(s+10)}
-\left(1+\frac{s}{z}\right).
+\frac{K}
+{(s+2)(s+10)}
+\left(
+1+\frac{s}{z}
+\right).
 \]
 
-Para frecuencias mucho menores que $z$, se cumple:
+Para frecuencias mucho menores que $z$:
+
 \[
-1+\frac{s}{z}\approx 1.
+1+\frac{s}{z}
+\approx1.
 \]
 
-Por su parte, la transferencia con polo adicional es:
+Por su parte:
+
 \[
 G_p(s)
 =
-\frac{Kp}{(s+2)(s+10)(s+p)}
+\frac{Kp}
+{(s+2)(s+10)(s+p)}
 =
-\frac{K}{(s+2)(s+10)}
-\frac{1}{1+s/p}.
+\frac{K}
+{(s+2)(s+10)}
+\frac{1}
+{1+s/p}.
 \]
 
 Para frecuencias mucho menores que $p$:
+
 \[
-\frac{1}{1+s/p}\approx 1.
+\frac{1}{1+s/p}
+\approx1.
 \]
 
-Por lo tanto, ambos sistemas admiten la misma aproximación
-de lazo abierto:
+Por lo tanto:
+
 \[
+\boxed{
 G_{\mathrm{aprox}}(s)
 =
-\frac{K}{(s+2)(s+10)}.
+\frac{K}
+{(s+2)(s+10)}.
+}
 \]
 
 Los polos originales se encuentran en $-2$ y $-10$.
-El valor $100$ representa una frecuencia característica
-diez veces mayor que $10$, mientras que el valor $15$
-se encuentra mucho más próximo a las frecuencias
-características del sistema original. Se espera, entonces,
-que la aproximación sea más precisa para $z=100$ y $p=100$.
+
+El valor $100$ se encuentra muy alejado de las frecuencias
+características asociadas a los polos dominantes, mientras
+que $15$ se encuentra considerablemente más próximo.
+
+Por este motivo se espera que la aproximación sea más
+precisa para $z=100$ y $p=100$ que para los casos
+$z=15$ y $p=15$.
+
 
 \subsubsection*{Transferencias utilizadas en la simulación}
 
-Con realimentación unitaria negativa, la transferencia
-de lazo cerrado es:
+Con realimentación unitaria negativa:
+
 \[
-T(s)=\frac{G(s)}{1+G(s)}.
+T(s)
+=
+\frac{G(s)}
+{1+G(s)}.
 \]
 
 Para el modelo aproximado con $K=10$:
+
 \[
 \boxed{
 T_{\mathrm{aprox}}(s)
 =
-\frac{10}{s^2+12s+30}.
+\frac{10}
+{s^2+12s+30}.
 }
 \]
 
 Para el sistema con cero adicional:
+
 \[
 T_z(s)
 =
@@ -768,94 +1520,122 @@ T_z(s)
 {s^2+(12+K/z)s+20+K}.
 \]
 
-Reemplazando la ganancia y los valores de $z$:
+Reemplazando:
+
 \[
 T_{z=100}(s)
 =
-\frac{0{,}1s+10}{s^2+12{,}1s+30},
+\frac{0{,}1s+10}
+{s^2+12{,}1s+30},
 \]
+
 \[
 T_{z=15}(s)
 =
-\frac{\frac{2}{3}s+10}
-{s^2+\frac{38}{3}s+30}.
+\frac{
+\frac{2}{3}s+10
+}{
+s^2+\frac{38}{3}s+30
+}.
 \]
 
 Para el sistema con polo adicional:
+
 \[
 T_p(s)
 =
 \frac{Kp}
-{s^3+(12+p)s^2+(20+12p)s+p(20+K)}.
+{
+s^3+(12+p)s^2+(20+12p)s+p(20+K)
+}.
 \]
 
 Reemplazando:
+
 \[
 T_{p=100}(s)
 =
-\frac{1000}{s^3+112s^2+1220s+3000},
+\frac{1000}
+{s^3+112s^2+1220s+3000},
 \]
+
 \[
 T_{p=15}(s)
 =
-\frac{150}{s^3+27s^2+200s+450}.
+\frac{150}
+{s^3+27s^2+200s+450}.
 \]
 
-Como todos los sistemas son estables, el valor final
-de la respuesta al escalón unitario se obtiene evaluando
-su transferencia de lazo cerrado en $s=0$:
+Como todos los sistemas son estables para $K=10$,
+el valor final de la respuesta al escalón es:
+
 \[
 \boxed{
-y_\infty=T(0)=\frac{K}{20+K}
-=\frac{10}{30}=\frac{1}{3}.
+y_\infty
+=
+T(0)
+=
+\frac{K}{20+K}
+=
+\frac{10}{30}
+=
+\frac{1}{3}.
 }
 \]
 
 Por lo tanto, la comparación permite observar principalmente
-las diferencias en el transitorio, ya que todos los modelos
-conservan el mismo valor final.
+las diferencias en el transitorio.
 
 Las simulaciones se realizaron en Python. Para visualizar
-el transitorio, se muestra un intervalo que se extiende
-hasta poco después del mayor tiempo de establecimiento,
-utilizando una banda del $\pm2\,\%$ del valor final.
+el transitorio se utiliza una banda del $\pm2\,\%$ del
+valor final.
 
-En el panel inferior de cada figura se representa
-la diferencia normalizada:
+En el panel inferior se representa la diferencia normalizada:
+
 \[
 \Delta(t)
 =
 \frac{
-y_{\mathrm{completo}}(t)-y_{\mathrm{aprox}}(t)
-}{y_\infty}
+y_{\mathrm{completo}}(t)
+-
+y_{\mathrm{aprox}}(t)
+}{
+y_\infty
+}
 \,100\,\%.
 \]
 
 Esta magnitud expresa la diferencia entre ambas respuestas
-como porcentaje del valor final común. Un valor negativo
-indica que la respuesta del modelo completo se encuentra
-por debajo de la aproximada en ese instante.
+como porcentaje del valor final común.
+
 
 \subsubsection*{Resultados con cero adicional}
 
 La Figura~\ref{fig:escalon-cero-adicional} compara las
-respuestas para $z=100$ y $z=15$ con la del modelo aproximado.
+respuestas para $z=100$ y $z=15$ con el modelo aproximado.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Imagenes/CeroAdicional.png}
-    \caption{Respuesta al escalón unitario en lazo cerrado
-    con cero adicional para $z=100$ y $z=15$, comparada
-    con el modelo aproximado, utilizando $K=10$.
-    El panel inferior muestra la diferencia normalizada
-    por el valor final común.}
+
+    \includegraphics[
+        width=\linewidth
+    ]{Imagenes/CeroAdicional.png}
+
+    \caption{
+    Respuesta al escalón unitario en lazo cerrado
+    con cero adicional para $z=100$ y $z=15$,
+    comparada con el modelo aproximado, utilizando
+    $K=10$. El panel inferior muestra la diferencia
+    normalizada por el valor final común.
+    }
+
     \label{fig:escalon-cero-adicional}
 \end{figure}
 
 Para $z=100$, la respuesta prácticamente coincide con
 la del modelo aproximado. La máxima diferencia absoluta,
-normalizada por el valor final, es inferior al $2\,\%$
-aproximadamente.
+normalizada por el valor final, es inferior al
+$2\,\%$ aproximadamente.
 
 Para $z=15$, la diferencia es más apreciable: la salida
 crece más rápidamente durante la parte inicial del
@@ -864,10 +1644,12 @@ aproximadamente el $12\,\%$.
 
 En ambos casos, las diferencias tienden a cero a medida
 que las respuestas se aproximan al mismo valor estacionario.
+
 Así, para la ganancia elegida, el cero ubicado en $-100$
 puede aproximarse con un efecto pequeño sobre la respuesta,
 mientras que el cero ubicado en $-15$ modifica de manera
 más marcada el transitorio.
+
 
 \subsubsection*{Resultados con polo adicional}
 
@@ -876,12 +1658,19 @@ comparación para $p=100$ y $p=15$.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Imagenes/PoloAdicional.png}
-    \caption{Respuesta al escalón unitario en lazo cerrado
-    con polo adicional para $p=100$ y $p=15$, comparada
-    con el modelo aproximado, utilizando $K=10$.
-    El panel inferior muestra la diferencia normalizada
-    por el valor final común.}
+
+    \includegraphics[
+        width=\linewidth
+    ]{Imagenes/PoloAdicional.png}
+
+    \caption{
+    Respuesta al escalón unitario en lazo cerrado
+    con polo adicional para $p=100$ y $p=15$,
+    comparada con el modelo aproximado, utilizando
+    $K=10$. El panel inferior muestra la diferencia
+    normalizada por el valor final común.
+    }
+
     \label{fig:escalon-polo-adicional}
 \end{figure}
 
@@ -891,13 +1680,17 @@ al $2\,\%$.
 
 Para $p=15$, la salida crece más lentamente durante
 la parte inicial del transitorio y permanece inicialmente
-por debajo de la respuesta aproximada. La máxima diferencia
-absoluta normalizada es de aproximadamente el $11\,\%$.
+por debajo de la respuesta aproximada.
 
-Por lo tanto, el polo ubicado en $-100$ tiene una influencia
-pequeña en la respuesta analizada, mientras que el polo
-ubicado en $-15$ produce una diferencia más importante
-respecto del modelo reducido.
+La máxima diferencia absoluta normalizada es de
+aproximadamente el $11\,\%$.
+
+Por lo tanto, el polo ubicado en $-100$ tiene una
+influencia pequeña en la respuesta analizada, mientras
+que el polo ubicado en $-15$ produce una diferencia
+más importante respecto del modelo reducido.
+
+\clearpage
 
 \section*{Ejercicio 4}
 
@@ -1185,51 +1978,75 @@ En la aplicación real, se puede analizar que la estabilidad incondicional es un
 \section*{Ejercicio 8}
 
 Se considera el modelo de la incubadora neonatal:
+
 \[
-G(s)=\frac{0{,}0743}{s^2+0{,}143s+0{,}003},
+G(s)
+=
+\frac{0{,}0743}
+{s^2+0{,}143s+0{,}003},
 \]
+
 junto con el compensador integral:
+
 \[
 C(s)=\frac{K}{s}.
 \]
 
 El compensador se coloca en cascada con la planta y
 se considera realimentación unitaria negativa:
+
 \[
 H(s)=1.
 \]
 
 Por lo tanto, la transferencia de lazo abierto es:
+
 \[
 \boxed{
-L(s)=C(s)G(s)H(s)
-=\frac{0{,}0743K}
+L(s)
+=
+C(s)G(s)H(s)
+=
+\frac{0{,}0743K}
 {s(s^2+0{,}143s+0{,}003)}.
 }
 \]
 
 La transferencia entre la referencia y la salida
 en lazo cerrado resulta:
+
 \[
-T(s)=\frac{C(s)G(s)}{1+C(s)G(s)H(s)}
+T(s)
+=
+\frac{C(s)G(s)}
+{1+C(s)G(s)H(s)}
 =
 \frac{0{,}0743K}
 {s^3+0{,}143s^2+0{,}003s+0{,}0743K}.
 \]
 
+
+% =========================================================
+% INCISO A
+% =========================================================
+
 \subsection*{a) Routh--Hurwitz y lugar de raíces}
+
 
 \subsubsection*{Ecuación característica}
 
 A partir de la condición $1+L(s)=0$:
+
 \begin{align*}
 s(s^2+0{,}143s+0{,}003)+0{,}0743K&=0,\\
 s^3+0{,}143s^2+0{,}003s+0{,}0743K&=0.
 \end{align*}
 
+
 \subsubsection*{Análisis de estabilidad por Routh--Hurwitz}
 
 La tabla de Routh es:
+
 \[
 \begin{array}{c|cc}
 s^3 & 1 & 0{,}003\\
@@ -1238,48 +2055,72 @@ s^1 & b_1 & 0\\
 s^0 & 0{,}0743K & 0
 \end{array}
 \]
+
 donde:
+
 \begin{align*}
 b_1
 &=
-\frac{0{,}143\cdot0{,}003-0{,}0743K}
-{0{,}143}\\
+\frac{
+0{,}143\cdot0{,}003-0{,}0743K
+}{
+0{,}143
+}\\
 &=
 0{,}003-\frac{0{,}0743}{0{,}143}K\\
-&\approx 0{,}003-0{,}51958042K.
+&\approx
+0{,}003-0{,}51958042K.
 \end{align*}
 
 Para obtener estabilidad asintótica, todos los elementos
 de la primera columna deben ser positivos:
+
 \[
 0{,}0743K>0,
 \]
+
 \[
 0{,}143\cdot0{,}003-0{,}0743K>0.
 \]
 
 Por lo tanto:
+
 \[
 K>0,
 \qquad
-K<\frac{0{,}143\cdot0{,}003}{0{,}0743}.
+K<
+\frac{
+0{,}143\cdot0{,}003
+}{
+0{,}0743
+}.
 \]
 
 Se define la ganancia crítica:
+
 \[
 K_{\mathrm{cr}}
 =
-\frac{0{,}143\cdot0{,}003}{0{,}0743}
-\approx 0{,}00577389.
+\frac{
+0{,}143\cdot0{,}003
+}{
+0{,}0743
+}
+\approx0{,}00577389.
 \]
 
 El intervalo de estabilidad es:
+
 \[
-\boxed{0<K<K_{\mathrm{cr}}\approx5{,}77389\times10^{-3}.}
+\boxed{
+0<K<K_{\mathrm{cr}}
+\approx5{,}77389\times10^{-3}.
+}
 \]
 
 Para $K>K_{\mathrm{cr}}$, la primera columna presenta
 los signos:
+
 \[
 +,\quad+,\quad-,\quad+.
 \]
@@ -1290,34 +2131,48 @@ el sistema es inestable.
 
 Para $K<0$, la primera columna presenta un cambio
 de signo, por lo que también se obtiene un sistema
-inestable. En $K=0$, el polinomio característico
-tiene una raíz en el origen y no es Hurwitz.
+inestable.
+
+En $K=0$, el polinomio característico tiene una raíz
+en el origen y no es Hurwitz.
+
 
 \subsubsection*{Polos y ceros de lazo abierto}
 
 Los polos de $L(s)$ se obtienen de:
+
 \[
 s(s^2+0{,}143s+0{,}003)=0.
 \]
 
 Uno de ellos se encuentra en:
+
 \[
 p_1=0.
 \]
 
 Los otros dos son:
+
 \[
 p_{2,3}
 =
-\frac{-0{,}143
-\pm\sqrt{0{,}143^2-4\cdot0{,}003}}{2}.
+\frac{
+-0{,}143
+\pm
+\sqrt{
+0{,}143^2-4\cdot0{,}003
+}
+}{2}.
 \]
 
 Numéricamente:
+
 \[
 \boxed{
-p_1=0,\qquad
-p_2\approx-0{,}02554078,\qquad
+p_1=0,
+\qquad
+p_2\approx-0{,}02554078,
+\qquad
 p_3\approx-0{,}11745922.
 }
 \]
@@ -1326,6 +2181,7 @@ El sistema no tiene ceros finitos, por lo que
 las tres ramas del lugar de raíces terminan
 en el infinito.
 
+
 \subsubsection*{Tramos del eje real}
 
 Para $K\geq0$, un punto del eje real pertenece al lugar
@@ -1333,6 +2189,7 @@ de raíces si tiene una cantidad impar de polos y ceros
 reales a su derecha.
 
 En este caso, los tramos pertenecientes al lugar son:
+
 \[
 \boxed{
 (-\infty,p_3)\ \cup\ (p_2,0).
@@ -1340,6 +2197,7 @@ En este caso, los tramos pertenecientes al lugar son:
 \]
 
 Numéricamente:
+
 \[
 (-\infty,-0{,}11745922)
 \ \cup\
@@ -1349,33 +2207,47 @@ Numéricamente:
 Los polos constituyen los puntos iniciales de las ramas
 para $K=0$.
 
+
 \subsubsection*{Punto de fuga}
 
 Despejando la ganancia de la ecuación característica:
+
 \[
 K(s)
 =
--\frac{s^3+0{,}143s^2+0{,}003s}{0{,}0743}.
+-\frac{
+s^3+0{,}143s^2+0{,}003s
+}{
+0{,}0743
+}.
 \]
 
 Se plantea:
+
 \[
 \frac{dK}{ds}=0.
 \]
 
 Derivando:
+
 \[
 \frac{dK}{ds}
 =
--\frac{3s^2+0{,}286s+0{,}003}{0{,}0743}.
+-\frac{
+3s^2+0{,}286s+0{,}003
+}{
+0{,}0743
+}.
 \]
 
 Por lo tanto:
+
 \[
 3s^2+0{,}286s+0{,}003=0.
 \]
 
 Sus soluciones son:
+
 \[
 s_1=-0{,}012,
 \qquad
@@ -1385,16 +2257,23 @@ s_2=-0{,}08333333.
 La solución $s_1=-0{,}012$ pertenece al tramo
 $(p_2,0)$ del lugar de raíces y corresponde
 a una ganancia positiva:
+
 \[
 K_f
 =
--\frac{(-0{,}012)^3
-+0{,}143(-0{,}012)^2
-+0{,}003(-0{,}012)}
-{0{,}0743}.
+-\frac{
+(-0{,}012)^3
++
+0{,}143(-0{,}012)^2
++
+0{,}003(-0{,}012)
+}{
+0{,}0743
+}.
 \]
 
 Así:
+
 \[
 \boxed{
 s_f=-0{,}012,
@@ -1405,6 +2284,7 @@ K_f\approx2{,}30633\times10^{-4}.
 
 Se elige este valor porque es el máximo de $K(s)$
 en el intervalo entre los polos $p_2$ y $0$.
+
 Las ramas que parten de estos polos se acercan,
 coinciden en $s_f$ y, para ganancias inmediatamente
 superiores a $K_f$, forman un par complejo conjugado.
@@ -1413,68 +2293,192 @@ La solución $s_2=-0{,}08333333$ se descarta para
 el lugar de raíces con $K\geq0$: se encuentra
 entre $p_3$ y $p_2$, en un tramo que no pertenece
 al lugar, y corresponde a:
+
 \[
-K(s_2)\approx-2{,}21200\times10^{-3}<0.
+K(s_2)
+\approx
+-2{,}21200\times10^{-3}<0.
 \]
+
 
 \subsubsection*{Asíntotas y centroide}
 
 El sistema tiene tres polos y ningún cero finito:
+
 \[
 n-m=3.
 \]
 
 Los ángulos de las asíntotas son:
+
 \[
 \theta_q
 =
 \frac{(2q+1)180^\circ}{3},
-\qquad q=0,1,2.
+\qquad
+q=0,1,2.
 \]
 
 Por lo tanto:
+
 \[
-\boxed{\theta=60^\circ,\ 180^\circ,\ 300^\circ.}
+\boxed{
+\theta=60^\circ,\ 180^\circ,\ 300^\circ.
+}
 \]
 
 El ángulo $300^\circ$ es equivalente a $-60^\circ$.
 
 El centroide se obtiene como:
+
 \[
 \sigma_a
 =
-\frac{\sum p_i-\sum z_i}{n-m}
+\frac{
+\sum p_i-\sum z_i
+}{
+n-m
+}
 =
 \frac{-0{,}143}{3}.
 \]
 
 Entonces:
+
 \[
-\boxed{\sigma_a\approx-0{,}04766667.}
+\boxed{
+\sigma_a\approx-0{,}04766667.
+}
 \]
+
+
+\subsubsection*{Cruce del eje imaginario}
+
+El cruce del eje imaginario ocurre cuando:
+
+\[
+K=K_{\mathrm{cr}}.
+\]
+
+Para esta ganancia:
+
+\[
+0{,}0743K_{\mathrm{cr}}
+=
+0{,}143\cdot0{,}003
+=
+0{,}000429.
+\]
+
+La ecuación característica queda:
+
+\[
+s^3
++
+0{,}143s^2
++
+0{,}003s
++
+0{,}000429
+=
+0.
+\]
+
+Esta expresión puede factorizarse como:
+
+\[
+(s+0{,}143)(s^2+0{,}003)=0.
+\]
+
+Por lo tanto, los polos de lazo cerrado en el límite
+de estabilidad son:
+
+\[
+\boxed{
+s=-0{,}143,
+\qquad
+s=\pm j\sqrt{0{,}003}.
+}
+\]
+
+Numéricamente:
+
+\[
+\boxed{
+s=-0{,}143,
+\qquad
+s=\pm j\,0{,}05477226.
+}
+\]
+
 
 \subsubsection*{Descripción del lugar de raíces}
 
-La rama que parte de $p_3\approx-0{,}11745922$
+La rama que parte de
+
+\[
+p_3\approx-0{,}11745922
+\]
+
 se desplaza sobre el eje real hacia $-\infty$.
 
 Las ramas que parten del origen y de
-$p_2\approx-0{,}02554078$ se encuentran en el punto
-de fuga $s_f=-0{,}012$. Luego forman un par complejo
-conjugado, cruzan el eje imaginario cuando
-$K=K_{\mathrm{cr}}$ y se aproximan a las asíntotas
-de $\pm60^\circ$ para ganancias grandes.
+
+\[
+p_2\approx-0{,}02554078
+\]
+
+se encuentran en el punto de fuga:
+
+\[
+s_f=-0{,}012.
+\]
+
+Luego forman un par complejo conjugado y cruzan el eje
+imaginario cuando:
+
+\[
+K=K_{\mathrm{cr}}
+\approx0{,}00577389,
+\]
+
+en:
+
+\[
+s=\pm j\,0{,}05477226.
+\]
+
+Para $K>K_{\mathrm{cr}}$, el par complejo ingresa
+al semiplano derecho y el sistema se vuelve inestable.
+
+Para ganancias grandes, las dos ramas complejas se
+aproximan a las asíntotas de $\pm60^\circ$, mientras
+que la tercera rama se dirige hacia $-\infty$ siguiendo
+la asíntota de $180^\circ$.
 
 Por lo tanto, el lugar de raíces concuerda con
-el intervalo de estabilidad obtenido mediante Routh.
+el intervalo de estabilidad obtenido mediante Routh:
+
+\[
+\boxed{
+0<K<K_{\mathrm{cr}}
+\approx5{,}77389\times10^{-3}.
+}
+\]
 
 \graficozonas
     {LR_Ej8.png}
     {Lugar de raíces del sistema compensado de la incubadora
-    neonatal para $K\geq0$. Se deben indicar los polos
-    iniciales, el punto de fuga, las asíntotas, el centroide
-    y los cruces del eje imaginario.}
+    neonatal para $K\geq0$. Se muestran los polos de lazo
+    abierto, el punto de fuga $s_f=-0{,}012$, el centroide,
+    las asíntotas y el cruce del eje imaginario para
+    $K=K_{\mathrm{cr}}$.}
     {fig:lr-ej8}
+
+
+% =========================================================
+% INCISO B
+% =========================================================
 
 \subsection*{b) Márgenes de ganancia y fase en Bode}
 
@@ -1484,70 +2488,108 @@ lazo cerrado $T(s)$. En este análisis se considera $K>0$.
 
 Para escribir la transferencia en forma factorizada,
 se definen:
+
 \[
-a=0{,}02554078,\qquad b=0{,}11745922,
+a=0{,}02554078,
+\qquad
+b=0{,}11745922,
 \]
+
 donde los valores mostrados están redondeados y
 los valores exactos satisfacen:
+
 \[
-a+b=0{,}143,\qquad ab=0{,}003.
+a+b=0{,}143,
+\qquad
+ab=0{,}003.
 \]
 
 Así:
+
 \[
-L(s)=\frac{0{,}0743K}{s(s+a)(s+b)}.
+L(s)
+=
+\frac{0{,}0743K}
+{s(s+a)(s+b)}.
 \]
+
 
 \subsubsection*{Módulo y fase}
 
 Evaluando en $s=j\omega$, con $\omega>0$:
+
 \[
 L(j\omega)
 =
 \frac{0{,}0743K}
-{j\omega\left[(0{,}003-\omega^2)
-+j\,0{,}143\omega\right]}.
+{
+j\omega
+\left[
+(0{,}003-\omega^2)
++j\,0{,}143\omega
+\right]
+}.
 \]
 
 Su módulo es:
+
 \[
 \boxed{
 |L(j\omega)|
 =
 \frac{0{,}0743K}
-{\omega
-\sqrt{(0{,}003-\omega^2)^2
-+(0{,}143\omega)^2}}.
+{
+\omega
+\sqrt{
+(0{,}003-\omega^2)^2
++
+(0{,}143\omega)^2
+}
+}.
 }
 \]
 
 Equivalentemente:
+
 \[
 |L(j\omega)|
 =
 \frac{0{,}0743K}
-{\omega\sqrt{\omega^2+a^2}\sqrt{\omega^2+b^2}}.
+{
+\omega
+\sqrt{\omega^2+a^2}
+\sqrt{\omega^2+b^2}
+}.
 \]
 
 En decibeles:
+
 \begin{align*}
 M(\omega)
-={}&20\log_{10}(0{,}0743K)
--20\log_{10}(\omega)\\
-&-10\log_{10}\left[
+={}&
+20\log_{10}(0{,}0743K)
+-20\log_{10}(\omega)
+\\
+&-
+10\log_{10}
+\left[
 (0{,}003-\omega^2)^2
-+(0{,}143\omega)^2
++
+(0{,}143\omega)^2
 \right].
 \end{align*}
 
 La fase continua, expresada en grados, es:
+
 \[
 \boxed{
 \phi(\omega)
 =
 -90^\circ
--\arctan\left(\frac{\omega}{a}\right)
--\arctan\left(\frac{\omega}{b}\right).
+-
+\arctan\left(\frac{\omega}{a}\right)
+-
+\arctan\left(\frac{\omega}{b}\right).
 }
 \]
 
@@ -1556,69 +2598,113 @@ se toman en grados.
 
 La fase comienza en $-90^\circ$ a bajas frecuencias,
 debido al integrador, y tiende a $-270^\circ$
-a altas frecuencias. Para $K>0$, la fase no depende
-de la ganancia.
+a altas frecuencias.
+
+Para $K>0$, la fase no depende de la ganancia.
 
 Las frecuencias de quiebre son:
+
 \[
-\omega_1=a\approx0{,}02554078\ \mathrm{rad/s},
+\omega_1
+=
+a
+\approx0{,}02554078\ \mathrm{rad/s},
 \]
+
 \[
-\omega_2=b\approx0{,}11745922\ \mathrm{rad/s}.
+\omega_2
+=
+b
+\approx0{,}11745922\ \mathrm{rad/s}.
 \]
 
 Las pendientes asintóticas del módulo son:
+
 \[
 \begin{array}{c|c}
 \text{Intervalo} & \text{Pendiente}\\
 \hline
-\omega<a & -20\ \mathrm{dB/d\acute{e}cada}\\
-a<\omega<b & -40\ \mathrm{dB/d\acute{e}cada}\\
-\omega>b & -60\ \mathrm{dB/d\acute{e}cada}
+\omega<a
+&
+-20\ \mathrm{dB/d\acute{e}cada}\\
+a<\omega<b
+&
+-40\ \mathrm{dB/d\acute{e}cada}\\
+\omega>b
+&
+-60\ \mathrm{dB/d\acute{e}cada}
 \end{array}
 \]
 
 Modificar $K$ desplaza verticalmente el módulo:
+
 \[
-M_{K_2}(\omega)-M_{K_1}(\omega)
+M_{K_2}(\omega)
+-
+M_{K_1}(\omega)
 =
-20\log_{10}\left(\frac{K_2}{K_1}\right),
+20\log_{10}
+\left(
+\frac{K_2}{K_1}
+\right),
 \]
+
 sin alterar las frecuencias de quiebre ni la fase.
+
 
 \subsubsection*{Frecuencia de cruce de fase}
 
 Se define $\omega_{pc}$ como la frecuencia para la cual:
+
 \[
 \phi(\omega_{pc})=-180^\circ.
 \]
 
 Por lo tanto:
+
 \[
-\arctan\left(\frac{\omega_{pc}}{a}\right)
+\arctan
+\left(
+\frac{\omega_{pc}}{a}
+\right)
 +
-\arctan\left(\frac{\omega_{pc}}{b}\right)
-=90^\circ.
+\arctan
+\left(
+\frac{\omega_{pc}}{b}
+\right)
+=
+90^\circ.
 \]
 
 Como ambos argumentos son positivos, esta condición
 se cumple cuando:
+
 \[
 \frac{\omega_{pc}}{a}
-\frac{\omega_{pc}}{b}=1.
+\frac{\omega_{pc}}{b}
+=
+1.
 \]
 
 Entonces:
+
 \[
-\omega_{pc}^2=ab=0{,}003,
+\omega_{pc}^2
+=
+ab
+=
+0{,}003,
 \]
+
 y se obtiene:
+
 \[
 \boxed{
 \omega_{pc}
 =
 \sqrt{0{,}003}
-\approx0{,}05477226\ \mathrm{rad/s}.
+\approx
+0{,}05477226\ \mathrm{rad/s}.
 }
 \]
 
@@ -1626,36 +2712,55 @@ Esta frecuencia no depende de $K$ y coincide
 con la frecuencia del cruce del eje imaginario
 obtenida mediante Routh.
 
+
 \subsubsection*{Margen de ganancia}
 
 El margen de ganancia en escala lineal es:
+
 \[
-MG=\frac{1}{|L(j\omega_{pc})|}.
+MG
+=
+\frac{1}{|L(j\omega_{pc})|}.
 \]
 
 Para $\omega_{pc}^2=0{,}003$, el módulo resulta:
+
 \[
 |L(j\omega_{pc})|
 =
-\frac{0{,}0743K}
-{0{,}143\omega_{pc}^2}
+\frac{
+0{,}0743K
+}{
+0{,}143\omega_{pc}^2
+}
 =
-\frac{0{,}0743K}{0{,}143\cdot0{,}003}.
+\frac{
+0{,}0743K
+}{
+0{,}143\cdot0{,}003
+}.
 \]
 
 Por lo tanto:
+
 \[
 \boxed{
-MG=\frac{K_{\mathrm{cr}}}{K}.
+MG
+=
+\frac{K_{\mathrm{cr}}}{K}.
 }
 \]
 
 En decibeles:
+
 \[
 \boxed{
 MG_{\mathrm{dB}}
 =
-20\log_{10}\left(\frac{K_{\mathrm{cr}}}{K}\right).
+20\log_{10}
+\left(
+\frac{K_{\mathrm{cr}}}{K}
+\right).
 }
 \]
 
@@ -1664,52 +2769,87 @@ multiplicarse la ganancia actual antes de alcanzar
 el límite de estabilidad.
 
 Para este sistema:
+
 \begin{itemize}
+
     \item Si $0<K<K_{\mathrm{cr}}$, entonces
     $MG>1$ y $MG_{\mathrm{dB}}>0$.
+
     \item Si $K=K_{\mathrm{cr}}$, entonces
     $MG=1$ y $MG_{\mathrm{dB}}=0$.
+
     \item Si $K>K_{\mathrm{cr}}$, entonces
     $MG<1$ y $MG_{\mathrm{dB}}<0$.
+
 \end{itemize}
+
 
 \subsubsection*{Frecuencia de cruce de ganancia}
 
 Se define $\omega_{gc}$ como la frecuencia en la que:
+
 \[
 |L(j\omega_{gc})|=1,
 \]
+
 es decir, donde el módulo cruza $0\ \mathrm{dB}$.
 
 Utilizando la expresión del módulo:
+
 \[
 \omega_{gc}^2
 \left[
 (0{,}003-\omega_{gc}^2)^2
-+(0{,}143\omega_{gc})^2
++
+(0{,}143\omega_{gc})^2
 \right]
 =
 (0{,}0743K)^2.
 \]
 
-Definiendo $x=\omega_{gc}^2$:
+Definiendo:
+
 \[
-x\left[(0{,}003-x)^2+0{,}143^2x\right]
+x=\omega_{gc}^2,
+\]
+
+se obtiene:
+
+\[
+x
+\left[
+(0{,}003-x)^2
++
+0{,}143^2x
+\right]
 =
 (0{,}0743K)^2.
 \]
 
 Desarrollando:
+
 \[
 \boxed{
-x^3+0{,}014449x^2+9\times10^{-6}x
--(0{,}0743K)^2=0.
+x^3
++
+0{,}014449x^2
++
+9\times10^{-6}x
+-
+(0{,}0743K)^2
+=
+0.
 }
 \]
 
 Se obtiene la raíz positiva de esta ecuación y luego:
+
 \[
-\boxed{\omega_{gc}=\sqrt{x}.}
+\boxed{
+\omega_{gc}
+=
+\sqrt{x}.
+}
 \]
 
 Para cada $K>0$ existe un único cruce de ganancia:
@@ -1717,50 +2857,76 @@ el módulo disminuye continuamente desde infinito,
 cuando $\omega\to0^+$, hasta cero, cuando
 $\omega\to\infty$.
 
+
 \subsubsection*{Margen de fase}
 
 El margen de fase se calcula en $\omega_{gc}$:
+
 \[
-MF=180^\circ+\phi(\omega_{gc}).
+MF
+=
+180^\circ
++
+\phi(\omega_{gc}).
 \]
 
 Reemplazando la expresión de fase:
+
 \[
 \boxed{
 MF
 =
 90^\circ
--\arctan\left(\frac{\omega_{gc}}{a}\right)
--\arctan\left(\frac{\omega_{gc}}{b}\right).
+-
+\arctan
+\left(
+\frac{\omega_{gc}}{a}
+\right)
+-
+\arctan
+\left(
+\frac{\omega_{gc}}{b}
+\right).
 }
 \]
 
 Al aumentar $K$, el módulo se desplaza hacia arriba
-y $\omega_{gc}$ aumenta. Como la fase se hace más
-negativa al aumentar la frecuencia, el margen
-de fase disminuye.
+y $\omega_{gc}$ aumenta.
+
+Como la fase se hace más negativa al aumentar la frecuencia,
+el margen de fase disminuye.
 
 Para este sistema:
+
 \begin{itemize}
+
     \item Si $0<K<K_{\mathrm{cr}}$, entonces
     $\omega_{gc}<\omega_{pc}$ y $MF>0$.
+
     \item Si $K=K_{\mathrm{cr}}$, entonces
     $\omega_{gc}=\omega_{pc}$ y $MF=0$.
+
     \item Si $K>K_{\mathrm{cr}}$, entonces
     $\omega_{gc}>\omega_{pc}$ y $MF<0$.
+
 \end{itemize}
+
 
 \subsubsection*{Valores numéricos para distintas ganancias}
 
 Para ilustrar la influencia de la ganancia, se seleccionan:
+
 \[
-K_1=0{,}001,\qquad
-K_2=0{,}003,\qquad
+K_1=0{,}001,
+\qquad
+K_2=0{,}003,
+\qquad
 K_3=0{,}010.
 \]
 
 Las dos primeras ganancias corresponden a sistemas
 estables y la tercera a un sistema inestable.
+
 También se incluye el valor crítico como referencia.
 
 Los márgenes se calcularon utilizando las expresiones
@@ -1769,32 +2935,64 @@ asintóticas del diagrama de Bode.
 
 \begin{center}
 \small
+
 \setlength{\tabcolsep}{4pt}
+
 \begin{tabular}{cccc}
+
 \toprule
+
 $K$
-& $\omega_{gc}\ [\mathrm{rad/s}]$
-& $MG_{\mathrm{dB}}$
-& $MF$\\
+&
+$\omega_{gc}\ [\mathrm{rad/s}]$
+&
+$MG_{\mathrm{dB}}$
+&
+$MF$
+\\
+
 \midrule
+
 $0{,}001$
-& $0{,}019442$
-& $15{,}23$
-& $43{,}32^\circ$\\
+&
+$0{,}019442$
+&
+$15{,}23$
+&
+$43{,}32^\circ$
+\\
+
 $0{,}003$
-& $0{,}038795$
-& $5{,}69$
-& $15{,}08^\circ$\\
+&
+$0{,}038795$
+&
+$5{,}69$
+&
+$15{,}08^\circ$
+\\
+
 $K_{\mathrm{cr}}$
-& $0{,}054772$
-& $0$
-& $0^\circ$\\
+&
+$0{,}054772$
+&
+$0$
+&
+$0^\circ$
+\\
+
 $0{,}010$
-& $0{,}071345$
-& $-4{,}77$
-& $-11{,}58^\circ$\\
+&
+$0{,}071345$
+&
+$-4{,}77$
+&
+$-11{,}58^\circ$
+\\
+
 \bottomrule
+
 \end{tabular}
+
 \end{center}
 
 Para $K=0{,}001$, el margen de ganancia lineal es
@@ -1803,6 +3001,7 @@ por ese factor antes de alcanzar el límite de estabilidad.
 
 Para $K=0{,}003$, dicho factor se reduce a aproximadamente
 $1{,}92$, y el margen de fase también es menor.
+
 Aunque el sistema sigue siendo estable, se encuentra
 más próximo al límite de estabilidad.
 
@@ -1810,13 +3009,15 @@ Para $K=0{,}010$, ambos márgenes en las escalas indicadas
 son negativos, en concordancia con la inestabilidad
 obtenida mediante Routh--Hurwitz.
 
+
 \subsubsection*{Diagramas de Bode}
 
-En el gráfico de módulo se representarán las curvas
+En el gráfico de módulo se representan las curvas
 correspondientes a las ganancias seleccionadas,
 la línea de $0\ \mathrm{dB}$, las frecuencias de cruce
 de ganancia y la frecuencia de cruce de fase.
-Los márgenes de ganancia se medirán en $\omega_{pc}$.
+
+Los márgenes de ganancia se miden en $\omega_{pc}$.
 
 \graficozonas
     {BodeModulo_Ej8.png}
@@ -1826,6 +3027,7 @@ Los márgenes de ganancia se medirán en $\omega_{pc}$.
     {fig:bode-modulo-ej8}
 
 La curva de fase es común a todas las ganancias positivas.
+
 Sobre ella se señalan las distintas frecuencias
 $\omega_{gc}$ y la separación angular respecto de
 $-180^\circ$, correspondiente al margen de fase.
